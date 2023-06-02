@@ -3,6 +3,7 @@ import { Restaurant } from '@/types'
 import Image from 'next/image'
 import Link from 'next/link'
 import { RiEBike2Fill } from 'react-icons/ri'
+import { convertPrice } from '@/pipes/convertPrice.pipe'
 
 interface Props {
   restaurants: Restaurant[]
@@ -14,7 +15,10 @@ const Restaurants: React.FC<Props> = ({ restaurants }) => {
       {restaurants.map((restaurant: Restaurant) => {
         return (
           <Link href={`restaurant/${restaurant.id}`} key={restaurant.name}>
-            <div className='block max-w-xs rounded-lg bg-slate-50 shadow-lg text-black'>
+            <div
+              className='block max-w-xs rounded-lg bg-slate-50 shadow-lg text-black transition duration-500
+               ease-in-out hover:scale-110 cursor-pointer'
+            >
               <Image
                 className='rounded-t-lg'
                 src='https://www.pequerecetas.com/wp-content/uploads/2013/07/hamburguesas-caseras-receta.jpg'
@@ -27,7 +31,7 @@ const Restaurants: React.FC<Props> = ({ restaurants }) => {
                 <span className=''> {restaurant.horary} </span>
                 <div className='flex items-center gap-2'>
                   <RiEBike2Fill />
-                  <span className=''>${restaurant.shipping}</span>
+                  <span className=''>{convertPrice(restaurant.shipping)}</span>
                 </div>
               </div>
             </div>

@@ -1,6 +1,7 @@
 export interface Restaurant {
   name: string
   email: string
+  image?: string
   address: string
   tel: string[]
   horary: string
