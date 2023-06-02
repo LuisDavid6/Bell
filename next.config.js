@@ -5,6 +5,9 @@ const nextConfig = {
       {
         hostname: 'www.pequerecetas.com',
       },
+      {
+        hostname: 'res.cloudinary.com',
+      },
     ],
   },
 }

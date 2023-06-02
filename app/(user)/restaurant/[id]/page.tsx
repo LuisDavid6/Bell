@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import React from 'react'
 import Foods from '@/components/Foods'
+import { getRestaurantById } from '@/lib/queries'
 
 interface Params {
   id: string
@@ -10,15 +11,8 @@ interface Props {
   params: Params
 }
 
-const URL = process.env.BACK_URL
-
-const getData = async (id: string) => {
-  const response = await fetch(`${URL}/companies/${id}`)
-  return await response.json()
-}
-
 const Restaurant = async ({ params: { id } }: Props) => {
-  const restaurant = await getData(id)
+  const restaurant = await getRestaurantById(id)
 
   return (
     <div className='flex flex-col'>

@@ -24,3 +24,9 @@ export interface Food {
   category: string[]
   company: string
 }
+
+export interface Category {
+  id: string
+  name: string
+  image: string
+}

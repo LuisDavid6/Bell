@@ -2,16 +2,11 @@ import React from 'react'
 import { getSession } from '@/lib/getSession'
 import { redirect } from 'next/navigation'
 import RestaurantsComponent from '@/components/Restaurants'
-
-const URL = process.env.BACK_URL
-
-const getData = () => {
-  return fetch(`${URL}/companies`, { cache: 'no-store' }).then((data) => data.json())
-}
+import { getRestaurants } from '@/lib/queries'
 
 const Restaurants = async () => {
   const session = await getSession()
-  const restaurants = await getData()
+  const restaurants = await getRestaurants()
 
   if (!session) {
     redirect('/login')
