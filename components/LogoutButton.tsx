@@ -8,8 +8,11 @@ interface Props {
 
 const LogOutButton = () => {
   return (
-    <button className='bg-orange-500 p-2 text-white rounded mt-2' onClick={() => signOut()}>
-      Logout
+    <button
+      className='bg-btn py-2 px-4 text-white rounded-full transition duration-500 ease-in-out hover:scale-110 hover:bg-btn2'
+      onClick={() => signOut()}
+    >
+      Cerrar sesion
     </button>
   )
 }

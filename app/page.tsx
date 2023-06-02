@@ -1,10 +1,6 @@
-import LogOutButton from '@/components/LogoutButton'
+import { redirect } from 'next/navigation'
 
-export default function Home() {
-  return (
-    <main className='min-h-screen'>
-      HOLA
-      <LogOutButton />
-    </main>
-  )
+export default async function Home() {
+  redirect('/home')
+  return <main className='min-h-screen'></main>
 }

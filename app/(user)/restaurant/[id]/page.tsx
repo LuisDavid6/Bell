@@ -29,9 +29,7 @@ const Restaurant = async ({ params: { id } }: Props) => {
           fill
           className='object-cover opacity-80'
         />
-        <h4 className='absolute left-0 bottom-0 bg-btn text-white md:text-2xl px-3'>
-          {restaurant.name}
-        </h4>
+        <h4 className='absolute left-0 bottom-0 bg-btn md:text-2xl px-3'>{restaurant.name}</h4>
       </div>
 
       <div className='flex flex-wrap bg-bg gap-x-10'>
