@@ -2,12 +2,15 @@ import Link from 'next/link'
 import React from 'react'
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid'
 import LogOutButton from '@/components/LogoutButton'
+import Cart from '@/components/Cart'
+import { Cart as CartInterface } from '@/types'
 
 interface Props {
   session: boolean
+  userCart: CartInterface
 }
 
-const NavBar: React.FC<Props> = ({ session }) => {
+const NavBar: React.FC<Props> = ({ session, userCart }) => {
   return (
     <div className='bg-bg px-4 py-4'>
       <div className='flex gap-5 justify-between items-center'>
@@ -24,13 +27,7 @@ const NavBar: React.FC<Props> = ({ session }) => {
 
         {session ? (
           <div className='flex gap-2'>
-            <button
-              // onClick={toggleDrawer}
-              className='bg-btn py-2 px-4 text-white rounded-full transition duration-500 
-                ease-in-out hover:scale-110 hover:bg-btn2'
-            >
-              Carrito
-            </button>
+            <Cart userCart={userCart} />
             <LogOutButton />
           </div>
         ) : (
@@ -52,17 +49,6 @@ const NavBar: React.FC<Props> = ({ session }) => {
           </div>
         )}
       </div>
-
-      {/* <Drawer
-        size={350}
-        open={isOpen}
-        onClose={toggleDrawer}
-        direction='right'
-        style={{ height: '100%' }}
-        className=''
-      >
-        <Cart />
-      </Drawer> */}
     </div>
   )
 }

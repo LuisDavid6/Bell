@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 const URL = process.env.BACK_URL
 
 export const getRestaurants = () => {
@@ -16,4 +18,9 @@ export const getRestaurantById = async (id: string) => {
 export const getAllFoods = async () => {
   const response = await fetch(`${URL}/foods/all`)
   return await response.json()
+}
+
+export const getUserCart = async (email: string) => {
+  const response = await axios.get(`${URL}/users/userCart/${email}`)
+  return response.data
 }

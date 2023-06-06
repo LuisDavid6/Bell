@@ -31,3 +31,16 @@ export interface Category {
   name: string
   image: string
 }
+
+export interface Cart {
+  id: string
+  user: string
+  total: number
+  company: CompanyCart
+  foods: Food[]
+}
+
+interface CompanyCart {
+  id: string
+  name: string
+}

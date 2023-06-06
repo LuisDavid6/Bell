@@ -19,6 +19,7 @@ const Foods: React.FC<Props> = ({ foods }) => {
   const openModal = () => {
     setIsOpen(true)
   }
+
   return (
     <>
       {isOpen && <FoodModal isOpen={isOpen} closeModal={closeModal} data={foodData} />}
