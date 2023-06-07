@@ -3,14 +3,12 @@ import React from 'react'
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid'
 import LogOutButton from '@/components/LogoutButton'
 import Cart from '@/components/Cart'
-import { Cart as CartInterface } from '@/types'
 
 interface Props {
-  session: boolean
-  userCart: CartInterface
+  email: string
 }
 
-const NavBar: React.FC<Props> = ({ session, userCart }) => {
+const NavBar: React.FC<Props> = ({ email }) => {
   return (
     <div className='bg-bg px-4 py-4'>
       <div className='flex gap-5 justify-between items-center'>
@@ -25,9 +23,9 @@ const NavBar: React.FC<Props> = ({ session, userCart }) => {
           />
         </div>
 
-        {session ? (
+        {email ? (
           <div className='flex gap-2'>
-            <Cart userCart={userCart} />
+            <Cart email={email} />
             <LogOutButton />
           </div>
         ) : (

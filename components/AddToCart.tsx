@@ -1,6 +1,7 @@
 'use client'
 import { FaCartPlus } from 'react-icons/fa'
-// import { useUser } from '@/context/userContext'
+import useStore from '@/lib/store'
+import useAddToCart from '@/hooks/useAddToCart'
 
 interface Product {
   id: string
@@ -12,10 +13,22 @@ interface Props {
 }
 
 const AddToCart: React.FC<Props> = ({ product: { id, company } }) => {
-  // const { addToCart } = useUser()
-  // return <FaCartPlus onClick={() => addToCart(id, company)} />
+  const { user } = useStore()
+
+  const add = async () => {
+    const response = await useAddToCart({
+      userId: user?.id ?? '',
+      foodId: id,
+      isNewCompany: (user?.cart.company || '') === company,
+    })
+    console.log(response)
+  }
+
   return (
-    <button className='flex p-2 items-center gap-2 bg-btn hover:bg-btn2 text-white rounded'>
+    <button
+      className='flex p-2 items-center gap-2 bg-btn hover:bg-btn2 text-white rounded'
+      onClick={add}
+    >
       <FaCartPlus />
       Agregar
     </button>

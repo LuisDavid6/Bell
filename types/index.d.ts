@@ -44,3 +44,14 @@ interface CompanyCart {
   id: string
   name: string
 }
+
+export interface User {
+  id: string
+  username: string
+  email: string
+  role: string
+  address: string[]
+  tel: string
+  cart: Cart
+  orders: any
+}

@@ -19,8 +19,3 @@ export const getAllFoods = async () => {
   const response = await fetch(`${URL}/foods/all`)
   return await response.json()
 }
-
-export const getUserCart = async (email: string) => {
-  const response = await axios.get(`${URL}/users/userCart/${email}`)
-  return response.data
-}

@@ -1,14 +1,18 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import CartModal from '@/components/CartModal'
-import { Cart } from '@/types'
+import useCurrentUser from '@/hooks/useCurrentUser'
+import useStore from '@/lib/store'
 
 interface Props {
-  userCart: Cart
+  email: string
 }
 
-const Cart: React.FC<Props> = ({ userCart }) => {
+const Cart: React.FC<Props> = ({ email }) => {
   const [isOpen, setIsOpen] = useState(false)
+  const { setUser } = useStore()
+
+  const { data } = useCurrentUser(email)
 
   const closeModal = () => {
     setIsOpen(false)
@@ -17,9 +21,15 @@ const Cart: React.FC<Props> = ({ userCart }) => {
     setIsOpen(true)
   }
 
+  useEffect(() => {
+    if (data) {
+      setUser(data)
+    }
+  }, [data])
+
   return (
     <>
-      {isOpen && <CartModal isOpen={isOpen} closeModal={closeModal} cart={userCart} />}
+      {isOpen && <CartModal isOpen={isOpen} closeModal={closeModal} email={email} />}
       <button
         onClick={openModal}
         className='bg-btn py-2 px-4 text-white rounded-full transition duration-500 
