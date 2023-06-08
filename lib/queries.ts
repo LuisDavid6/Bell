@@ -24,3 +24,8 @@ export const getFoodsByCategory = async (category: string) => {
   const response = await fetch(`${URL}/foods/category/${category}`)
   return await response.json()
 }
+
+export const getSearchFoods = async (name: string) => {
+  const response = await axios.get(`${URL}/foods/search/${name}`)
+  return response.data
+}

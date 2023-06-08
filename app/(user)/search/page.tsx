@@ -1,23 +1,18 @@
 import Categories from '@/components/Categories'
 import Foods from '@/components/Foods'
-import { getCategories, getFoodsByCategory } from '@/lib/queries'
-import React from 'react'
+import { getCategories, getSearchFoods } from '@/lib/queries'
 
 interface Props {
-  params: { category: string }
+  searchParams: { name: string }
 }
 
-const Category = async ({ params: { category } }: Props) => {
+const SearchFoods = async ({ searchParams: { name } }: Props) => {
+  const foods = await getSearchFoods(name.replaceAll('%20', ' '))
   const categories = await getCategories()
-  const foods = await getFoodsByCategory(category.toLowerCase().replaceAll('%20', ' '))
 
   return (
-    <div className='pb-5'>
+    <div>
       <Categories categories={categories} />
-      <h2 className='text-title text-xl font-bold w-full text-center'>
-        {category.replaceAll('%20', ' ')}
-      </h2>
-
       {foods.length < 1 ? (
         <h1 className='text-center text-title text-xl font-bold mt-10'>
           ⚠️ No se encontraron resultados...
@@ -31,4 +26,4 @@ const Category = async ({ params: { category } }: Props) => {
   )
 }
 
-export default Category
+export default SearchFoods

@@ -1,6 +1,7 @@
 'use client'
 import React from 'react'
 import { signOut } from 'next-auth/react'
+import { ArrowRightOnRectangleIcon } from '@heroicons/react/24/solid'
 
 interface Props {
   signOut: () => void
@@ -9,10 +10,11 @@ interface Props {
 const LogOutButton = () => {
   return (
     <button
-      className='bg-btn py-2 px-4 text-white rounded-full transition duration-500 ease-in-out hover:scale-110 hover:bg-btn2'
+      className='bg-transparent font-bold py-2 px-3 flex items-center gap-1 rounded-full transition duration-500 ease-in-out hover:scale-110 hover:text-title'
       onClick={() => signOut()}
     >
-      Cerrar sesion
+      <ArrowRightOnRectangleIcon className='w-6' />
+      Salir
     </button>
   )
 }

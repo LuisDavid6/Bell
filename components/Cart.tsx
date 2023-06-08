@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import CartModal from '@/components/CartModal'
 import useCurrentUser from '@/hooks/useCurrentUser'
 import useStore from '@/lib/store'
+import { ShoppingCartIcon } from '@heroicons/react/24/solid'
 
 interface Props {
   email: string
@@ -30,13 +31,10 @@ const Cart: React.FC<Props> = ({ email }) => {
   return (
     <>
       {isOpen && <CartModal isOpen={isOpen} closeModal={closeModal} email={email} />}
-      <button
+      <ShoppingCartIcon
         onClick={openModal}
-        className='bg-btn py-2 px-4 text-white rounded-full transition duration-500 
-        ease-in-out hover:scale-110 hover:bg-btn2'
-      >
-        Carrito
-      </button>
+        className='w-6 transition duration-500 ease-in-out hover:scale-110 cursor-pointer hover:text-title'
+      />
     </>
   )
 }
