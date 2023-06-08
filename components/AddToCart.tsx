@@ -10,17 +10,21 @@ interface Product {
 
 interface Props {
   product: Product
+  closeModal: () => void
 }
 
-const AddToCart: React.FC<Props> = ({ product: { id, company } }) => {
+const AddToCart: React.FC<Props> = ({ product: { id, company }, closeModal }) => {
   const { user } = useStore()
 
   const add = async () => {
     const response = await useAddToCart({
       userId: user?.id ?? '',
       foodId: id,
-      isNewCompany: (user?.cart.company || '') === company,
+      isNewCompany: user?.cart.company.id !== company,
     })
+
+    closeModal()
+
     console.log(response)
   }
 

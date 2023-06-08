@@ -14,7 +14,7 @@ interface Props {
 const CartModal: React.FC<Props> = ({ isOpen, closeModal, email }) => {
   const [isVisible, setIsVisible] = useState<boolean>(!!isOpen)
   const { data: cart } = useGetCart(email)
-
+  console.log(cart)
   useEffect(() => {
     setIsVisible(!!isOpen)
   }, [isOpen])
@@ -50,8 +50,13 @@ const CartModal: React.FC<Props> = ({ isOpen, closeModal, email }) => {
                 </div>
               )
             })}
+            <h3 className='font-semibold mt-4 text-left w-full'>
+              Domicilio {convertPrice(cart.company.shipping)}
+            </h3>
             <h2 className='mt-4 font-bold'>Total a pagar</h2>
-            <h1 className='font-bold text-title text-xl mb-5'>{convertPrice(cart.total)}</h1>
+            <h1 className='font-bold text-title text-xl mb-5'>
+              {convertPrice(cart.total + cart.company.shipping)}
+            </h1>
             <button
               className='bg-btn py-2 px-4 text-white rounded-full transition duration-500
                 ease-in-out hover:scale-110 hover:bg-btn2'

@@ -13,8 +13,7 @@ const Restaurants = async () => {
   }
 
   return (
-    <div className=''>
-      <h3>Restaurants</h3>
+    <div className='pb-5'>
       <RestaurantsComponent restaurants={restaurants} />
     </div>
   )

@@ -19,3 +19,8 @@ export const getAllFoods = async () => {
   const response = await fetch(`${URL}/foods/all`)
   return await response.json()
 }
+
+export const getFoodsByCategory = async (category: string) => {
+  const response = await fetch(`${URL}/foods/category/${category}`)
+  return await response.json()
+}

@@ -12,7 +12,7 @@ const NavBar: React.FC<Props> = ({ email }) => {
   return (
     <div className='bg-bg px-4 py-4'>
       <div className='flex gap-5 justify-between items-center'>
-        <Link href='/'>
+        <Link href='/home'>
           <h1 className='text-4xl text-btn font-bold'> Bell's </h1>
         </Link>
         <div className='relative w-3/6 '>

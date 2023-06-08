@@ -6,6 +6,7 @@ import { Category } from '@/types'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay } from 'swiper'
 import 'swiper/css'
+import Link from 'next/link'
 
 interface Props {
   categories: Category[]
@@ -60,17 +61,19 @@ const Categories: React.FC<Props> = ({ categories }) => {
         {categories.map((category) => {
           return (
             <SwiperSlide key={category.id}>
-              <section className='flex flex-col items-center cursor-pointer'>
-                <Image
-                  src={category.image}
-                  alt={category.name}
-                  width={100}
-                  height={800}
-                  style={{ objectFit: 'cover', width: '100px', height: '80px' }}
-                  className='rounded-xl'
-                />
-                <h5 className='text-sm text-center font-semibold'>{category.name}</h5>
-              </section>
+              <Link href={`category/${category.name}`}>
+                <section className='flex flex-col items-center cursor-pointer'>
+                  <Image
+                    src={category.image}
+                    alt={category.name}
+                    width={100}
+                    height={800}
+                    style={{ objectFit: 'cover', width: '100px', height: '80px' }}
+                    className='rounded-xl'
+                  />
+                  <h5 className='text-sm text-center font-semibold'>{category.name}</h5>
+                </section>
+              </Link>
             </SwiperSlide>
           )
         })}
