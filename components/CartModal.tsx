@@ -1,7 +1,9 @@
 'use client'
+import useAddToCart from '@/hooks/useAddToCart'
 import useGetCart from '@/hooks/useGetCart'
 import { convertPrice } from '@/pipes/convertPrice.pipe'
-import { Food } from '@/types'
+import { FoodCart } from '@/types'
+import { MinusSmallIcon, PlusSmallIcon, TrashIcon } from '@heroicons/react/24/solid'
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 
@@ -13,8 +15,9 @@ interface Props {
 
 const CartModal: React.FC<Props> = ({ isOpen, closeModal, email }) => {
   const [isVisible, setIsVisible] = useState<boolean>(!!isOpen)
-  const { data: cart } = useGetCart(email)
+  const { data: cart, mutate } = useGetCart(email)
   console.log(cart)
+
   useEffect(() => {
     setIsVisible(!!isOpen)
   }, [isOpen])
@@ -24,6 +27,16 @@ const CartModal: React.FC<Props> = ({ isOpen, closeModal, email }) => {
     setTimeout(() => {
       closeModal()
     }, 300)
+  }
+
+  const handleCant = async (cant: number, foodId: string) => {
+    await useAddToCart({
+      foodId,
+      cant,
+      userId: cart.user,
+      isNewCompany: false,
+    })
+    mutate()
   }
 
   if (!isOpen) return null
@@ -36,17 +49,35 @@ const CartModal: React.FC<Props> = ({ isOpen, closeModal, email }) => {
           isVisible ? '' : 'translate-x-full'
         } max-w-md min-w-[280px] md:min-w-[350px] min-h-screen h-fit bg-white transform duration-300 drop-shadow-md`}
       >
-        {cart && (
+        {cart?.company && (
           <div className='flex flex-col mx-2 mt-1 pb-4 gap-4 items-center'>
             <h2 className='text-title italic font-bold'>{cart.company.name}</h2>
-            {cart.foods.map((food: Food) => {
+            {cart.foods.map(({ id, food, cant }: FoodCart) => {
               return (
-                <div key={food.id} className='border rounded-lg p-2 flex w-full gap-5'>
+                <div key={id} className=' flex w-full gap-5 border rounded-lg p-2'>
                   <div className='grid gap-3 w-3/6'>
-                    <h5>{food.name}</h5>
-                    <h5>{convertPrice(food.price)}</h5>
+                    <h5 className='text-left'>{food.name}</h5>
+                    <h5 className='text-left'>{convertPrice(food.price)}</h5>
+                    <div className='border-2 p-1 flex place-self-center gap-5 w-fit'>
+                      {cant > 1 ? (
+                        <MinusSmallIcon
+                          className='w-6 cursor-pointer'
+                          onClick={() => handleCant(-1, food.id)}
+                        />
+                      ) : (
+                        <TrashIcon
+                          className='w-5 cursor-pointer'
+                          onClick={() => handleCant(-1, food.id)}
+                        />
+                      )}
+                      <h1 className='font-extrabold'>{cant}</h1>
+                      <PlusSmallIcon
+                        className='w-5 cursor-pointer'
+                        onClick={() => handleCant(1, food.id)}
+                      />
+                    </div>
                   </div>
-                  <Image src={food.img} alt={food.name} width={100} height={100} />
+                  <Image src={food.img} alt={food.name} width={130} height={100} />
                 </div>
               )
             })}

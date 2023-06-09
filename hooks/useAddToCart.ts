@@ -3,6 +3,7 @@ import axios from 'axios'
 interface Product {
   userId: string
   foodId: string
+  cant: number
   isNewCompany: boolean
 }
 

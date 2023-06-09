@@ -37,7 +37,15 @@ export interface Cart {
   user: string
   total: number
   company: CompanyCart
-  foods: Food[]
+  foods: FoodCart[]
+}
+
+export interface FoodCart {
+  id: string
+  cart: string
+  food: Food
+  cant: number
+  total: number
 }
 
 interface CompanyCart {

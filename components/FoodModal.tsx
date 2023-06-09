@@ -77,7 +77,7 @@ const FoodModal: React.FC<Props> = ({ isOpen, closeModal, data }) => {
                 </div>
                 <h1 className='p-2 text-lg font-extrabold'>{convertPrice(total)}</h1>
                 <AddToCart
-                  product={{ id: data.id, company: data.company }}
+                  product={{ id: data.id, company: data.company, cant }}
                   closeModal={closeModal}
                 />
               </div>

@@ -34,12 +34,14 @@ const NavBar: React.FC<Props> = ({ email }) => {
                 Ingresar
               </button>
             </Link>
-            <button
-              className='bg-btn py-2 px-4 text-white rounded-full transition duration-500
-                ease-in-out hover:scale-110 hover:bg-btn2'
-            >
-              Registrarse
-            </button>
+            <Link href='/register'>
+              <button
+                className='bg-btn py-2 px-4 text-white rounded-full transition duration-500
+              ease-in-out hover:scale-110 hover:bg-btn2'
+              >
+                Registrarse
+              </button>
+            </Link>
           </div>
         )}
       </div>

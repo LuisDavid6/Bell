@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const URL = process.env.BACK_URL
+const URL = process.env.BACK_URL || process.env.NEXT_PUBLIC_URL
 
 export const getRestaurants = () => {
   return fetch(`${URL}/companies`, { cache: 'no-store' }).then((data) => data.json())
@@ -27,5 +27,10 @@ export const getFoodsByCategory = async (category: string) => {
 
 export const getSearchFoods = async (name: string) => {
   const response = await axios.get(`${URL}/foods/search/${name}`)
+  return response.data
+}
+
+export const getUserByEmail = async (email: string) => {
+  const response = await axios.get(`${URL}/users/userInfo/${email}`)
   return response.data
 }
