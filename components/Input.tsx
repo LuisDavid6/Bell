@@ -14,9 +14,10 @@ const Input: React.FC<Props> = ({ id, label, value, type, onChange, register }) 
       <input
         id={id}
         type={type}
+        autoComplete='off'
         value={value}
         className={`${
-          register ? 'border-2 focus:border-title rounded' : 'border-b-2 focus:border-b-btn'
+          register ? 'border-2 focus:border-title rounded-lg' : 'border-b-2 focus:border-b-btn'
         } px-2 pt-6 w-full bg-transparent text-md appearance-none
           focus:outline-none focus:ring-0 peer`}
         placeholder=' '

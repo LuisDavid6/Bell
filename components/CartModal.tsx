@@ -16,7 +16,6 @@ interface Props {
 const CartModal: React.FC<Props> = ({ isOpen, closeModal, email }) => {
   const [isVisible, setIsVisible] = useState<boolean>(!!isOpen)
   const { data: cart, mutate } = useGetCart(email)
-  console.log(cart)
 
   useEffect(() => {
     setIsVisible(!!isOpen)

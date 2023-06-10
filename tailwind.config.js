@@ -13,6 +13,7 @@ module.exports = {
       },
       colors: {
         bg: '#fff2e5',
+        bg2: '#FFFAF4',
         btn: '#ff441f',
         btn2: '#ED2703',
         title: '#F1550D',
