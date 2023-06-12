@@ -7,7 +7,7 @@ export const getRestaurants = () => {
 }
 
 export const getCategories = () => {
-  return fetch(`${URL}/categories`, { cache: 'no-store' }).then((data) => data.json())
+  return fetch(`${URL}/categories`, { cache: 'force-cache' }).then((data) => data.json())
 }
 
 export const getRestaurantById = async (id: string) => {
@@ -33,4 +33,8 @@ export const getSearchFoods = async (name: string) => {
 export const getUserByEmail = async (email: string) => {
   const response = await axios.get(`${URL}/users/userInfo/${email}`)
   return response.data
+}
+
+export const verifyUser = async (email: string) => {
+  return fetch(`${URL}/auth/verify/${email}`, { cache: 'force-cache' }).then((data) => data.json())
 }

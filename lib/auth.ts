@@ -1,6 +1,7 @@
 import NextAuth, { AuthOptions } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import axios from 'axios'
+import { JWTEncodeParams } from 'next-auth/jwt'
 
 const URL = process.env.BACK_URL
 
@@ -34,6 +35,15 @@ export const authOptions: AuthOptions = {
       },
     }),
   ],
+  callbacks: {
+    async jwt({ token, user }) {
+      return { ...token, ...user }
+    },
+    async session({ session, token }) {
+      session.user = token
+      return session
+    },
+  },
   session: { strategy: 'jwt' },
   jwt: {
     secret: process.env.NEXTAUTH_JWT_SECRET,
