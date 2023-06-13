@@ -15,7 +15,7 @@ const NavBar: React.FC<Props> = ({ email }) => {
         <Link href='/home'>
           <h1 className='text-4xl text-btn font-bold'> Bell's </h1>
         </Link>
-        <div className='relative w-3/6 '>
+        <div className='relative w-3/6 max-[580px]:hidden'>
           <Search />
         </div>
 
@@ -44,6 +44,11 @@ const NavBar: React.FC<Props> = ({ email }) => {
             </Link>
           </div>
         )}
+      </div>
+      <div className='flex justify-center mt-3 min-[580px]:hidden'>
+        <div className='relative w-5/6'>
+          <Search />
+        </div>
       </div>
     </div>
   )

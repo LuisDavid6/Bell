@@ -21,10 +21,14 @@ const Restaurants: React.FC<Props> = ({ restaurants }) => {
             >
               <Image
                 className='rounded-t-lg'
-                src='https://www.pequerecetas.com/wp-content/uploads/2013/07/hamburguesas-caseras-receta.jpg'
+                src={
+                  restaurant.image ||
+                  'https://www.pequerecetas.com/wp-content/uploads/2013/07/hamburguesas-caseras-receta.jpg'
+                }
                 alt={restaurant.name}
                 width={320}
-                height={250}
+                height={200}
+                style={{ objectFit: 'cover', width: '320px', height: '200px' }}
               />
               <h1 className='mb-2 text-lg text-center font-semibold italic'>{restaurant.name} </h1>
               <div className='text-sm flex justify-between px-3'>
