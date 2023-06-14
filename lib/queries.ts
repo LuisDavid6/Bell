@@ -11,7 +11,12 @@ export const getCategories = () => {
 }
 
 export const getRestaurantById = async (id: string) => {
-  const response = await fetch(`${URL}/companies/${id}`, { cache: 'no-store' })
+  const response = await fetch(`${URL}/companies/${id}`)
+  return await response.json()
+}
+
+export const getRestaurantInfo = async (id: string) => {
+  const response = await fetch(`${URL}/companies/info/${id}`, { cache: 'no-store' })
   return await response.json()
 }
 
@@ -22,6 +27,11 @@ export const getAllFoods = async () => {
 
 export const getFoodsByCategory = async (category: string) => {
   const response = await fetch(`${URL}/foods/category/${category}`)
+  return await response.json()
+}
+
+export const getOfferFoodsByCompany = async (id: string) => {
+  const response = await fetch(`${URL}/foods/offerCompany/${id}`)
   return await response.json()
 }
 
