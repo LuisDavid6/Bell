@@ -11,7 +11,7 @@ const LogOutButton = () => {
   return (
     <button
       className='bg-transparent font-bold py-2 px-3 flex items-center gap-1 rounded-full transition duration-500 ease-in-out hover:scale-110 hover:text-title'
-      onClick={() => signOut()}
+      onClick={() => signOut({ callbackUrl: '/', redirect: true })}
     >
       <ArrowRightOnRectangleIcon className='w-6' />
       Salir

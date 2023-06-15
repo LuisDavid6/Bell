@@ -15,7 +15,13 @@ const layout = async ({ children }: { children: ReactNode }) => {
   return (
     <div className='flex gap-4'>
       <Menu />
-      <>{children}</>
+      <div>
+        <div className='mt-4'>
+          <h2 className='text-2xl font-bold mb-4'>{session?.user?.username?.toUpperCase()}</h2>
+          <hr />
+          {children}
+        </div>
+      </div>
     </div>
   )
 }

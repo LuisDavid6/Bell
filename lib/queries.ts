@@ -35,6 +35,16 @@ export const getOfferFoodsByCompany = async (id: string) => {
   return await response.json()
 }
 
+export const getFoodsByCompany = async (id: string, name: string) => {
+  const response = await fetch(`${URL}/foods/company/${id}?name=${name}`)
+  return await response.json()
+}
+
+export const getCompanyCategories = async (id: string) => {
+  const response = await fetch(`${URL}/companies/categories/${id}`)
+  return await response.json()
+}
+
 export const getSearchFoods = async (name: string) => {
   const response = await axios.get(`${URL}/foods/search/${name}`)
   return response.data

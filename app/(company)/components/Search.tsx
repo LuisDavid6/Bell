@@ -9,7 +9,7 @@ const Search = () => {
 
   const handleSearch = async (e: React.SyntheticEvent) => {
     e.preventDefault()
-    router.push(`/search?name=${search}`)
+    router.push(`/products?name=${search}`)
   }
 
   return (

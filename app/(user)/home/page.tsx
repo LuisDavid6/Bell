@@ -29,7 +29,7 @@ const Home = async () => {
       </div>
       <div className='w-full flex justify-center'>
         <div className='grid grid-cols-2 gap-3 max-md:grid-cols-1 mx-3 w-5/6'>
-          <Foods foods={foods} />
+          <Foods foods={foods.slice(0, 6)} />
         </div>
       </div>
       <div className='w-full mt-3'>

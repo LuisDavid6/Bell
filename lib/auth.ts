@@ -1,7 +1,6 @@
 import NextAuth, { AuthOptions } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import axios from 'axios'
-import { JWTEncodeParams } from 'next-auth/jwt'
 
 const URL = process.env.BACK_URL
 

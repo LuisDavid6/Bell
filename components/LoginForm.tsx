@@ -52,7 +52,11 @@ const LoginForm = () => {
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
         />
       </div>
-      <button className='bg-orange-500 hover:bg-orange-600 rounded p-2 mt-5 w-9/12' onClick={login}>
+      <button
+        className='bg-btn py-2 px-4 text-white rounded-full transition duration-500
+                ease-in-out hover:scale-110 hover:bg-btn2 p-2 mt-5 w-9/12'
+        onClick={login}
+      >
         Login
       </button>
       {error.status && (
