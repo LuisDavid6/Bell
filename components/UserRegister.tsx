@@ -51,7 +51,7 @@ const UserRegister = () => {
               <section>
                 <Input
                   id='username'
-                  label='username'
+                  label='Username'
                   value={values.username}
                   type='text'
                   onChange={handleChange}

@@ -3,7 +3,7 @@ import React from 'react'
 interface Props {
   id: string
   onChange: any
-  value: string
+  value: string | number
   label: string
   type?: string
   register?: boolean
