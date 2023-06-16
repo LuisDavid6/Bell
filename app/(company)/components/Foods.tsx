@@ -28,7 +28,7 @@ const Foods: FC<Props> = ({ foods }) => {
                 </td>
                 <td className='p-3 border-b-2 border-gray-300 pr-10'>{food.name}</td>
                 <td className='p-3 border-b-2 border-gray-300'>{convertPrice(food.price)}</td>
-                <td className='p-3 pl-16 border-b-2 border-gray-300'>
+                <td className='p-3 pl-8 sm:pl-16 border-b-2 border-gray-300'>
                   <PencilSquareIcon className='w-5 cursor-pointer' />
                 </td>
                 <td className='p-3 border-b-2 border-gray-300'>

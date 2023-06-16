@@ -41,7 +41,7 @@ const CartModal: React.FC<Props> = ({ isOpen, closeModal, email }) => {
   if (!isOpen) return null
 
   return (
-    <div className='z-50 transision duration-300 bg-black bg-opacity-5 overflow-x-hidden overflow-y-auto fixed inset-0 flex justify-end'>
+    <div className='z-50 transision duration-300 bg-black bg-opacity-60 overflow-x-hidden overflow-y-auto fixed inset-0 flex justify-end'>
       <div className='w-full' onClick={handleClose}></div>
       <div
         className={`${

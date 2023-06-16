@@ -22,7 +22,7 @@ const AddProductButton = () => {
       ease-in-out hover:scale-110 hover:bg-btn2 flex items-center'
       >
         <PlusSmallIcon className='w-6' />
-        Nuevo producto
+        Nuevo <span className='max-sm:hidden ml-1'>producto</span>
       </button>
     </>
   )

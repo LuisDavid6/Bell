@@ -21,11 +21,15 @@ const AddProductForm = () => {
         validationSchema={Yup.object({
           name: Yup.string().required('*Este campo es requerido'),
           description: Yup.string().required('*Este campo es requerido'),
-          price: Yup.number().required('*Este campo es requerido'),
+          price: Yup.number()
+            .required('*Este campo es requerido')
+            .min(1000, '*El valor debe ser mayor'),
           img: Yup.string().required('*Este campo es requerido'),
           category: Yup.string().required('*Este campo es requerido'),
         })}
-        onSubmit={async ({ name, price, description, offer, img, category }) => {}}
+        onSubmit={async ({ name, price, description, offer, img, category }) => {
+          console.log(offer)
+        }}
       >
         {({ values, errors, handleSubmit, handleChange }) => (
           <form onSubmit={handleSubmit} className='flex flex-col'>
@@ -67,7 +71,7 @@ const AddProductForm = () => {
               <section>
                 <Input
                   id='category'
-                  label='Categorieas'
+                  label='Categorias'
                   value={values.category}
                   type='text'
                   onChange={handleChange}
@@ -87,7 +91,7 @@ const AddProductForm = () => {
                 <span className='text-xs font-semibold text-red-600'>{errors.img}</span>
               </section>
               <section>
-                <input type='checkbox' />
+                <input type='checkbox' name='offer' onChange={handleChange} />
                 <span className='ml-2'>Oferta</span>
               </section>
             </div>

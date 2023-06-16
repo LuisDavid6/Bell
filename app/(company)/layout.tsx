@@ -2,6 +2,7 @@ import { ReactNode } from 'react'
 import { getSession } from '@/lib/getSession'
 import { redirect, notFound } from 'next/navigation'
 import Menu from '@/app/(company)/components/Menu'
+import MenuMobile from './components/MenuMobile'
 
 const layout = async ({ children }: { children: ReactNode }) => {
   const session = await getSession()
@@ -14,13 +15,18 @@ const layout = async ({ children }: { children: ReactNode }) => {
 
   return (
     <div className='flex gap-4'>
-      <Menu />
+      <section className='hidden md:flex'>
+        <Menu />
+      </section>
+      <section className='flex md:hidden'>
+        <MenuMobile />
+      </section>
       <div>
         <div className='mt-4'>
           <h2 className='text-2xl font-bold mb-4'>{session?.user?.username?.toUpperCase()}</h2>
           <hr />
-          {children}
         </div>
+        {children}
       </div>
     </div>
   )
