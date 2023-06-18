@@ -6,7 +6,6 @@ import { getUserByEmail } from '@/lib/queries'
 
 interface Product {
   id: string
-  company: string
   cant: number
 }
 
@@ -15,7 +14,7 @@ interface Props {
   closeModal: () => void
 }
 
-const AddToCart: React.FC<Props> = ({ product: { id, company, cant }, closeModal }) => {
+const AddToCart: React.FC<Props> = ({ product: { id, cant }, closeModal }) => {
   const { user } = useStore()
   const { setUser } = useStore()
 
@@ -24,7 +23,6 @@ const AddToCart: React.FC<Props> = ({ product: { id, company, cant }, closeModal
       userId: user?.id ?? '',
       foodId: id,
       cant,
-      isNewCompany: user?.cart?.company?.id !== company,
     })
 
     closeModal()

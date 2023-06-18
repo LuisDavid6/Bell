@@ -20,7 +20,7 @@ const Categories: FC<Props> = ({ categories }) => {
           return (
             <div className='flex justify-between'>
               <h4 className='py-3'>- {category}</h4>
-              <BackspaceIcon className='w-6 cursor-pointer' />
+              <BackspaceIcon className='w-6 cursor-pointer mr-4' />
             </div>
           )
         })}

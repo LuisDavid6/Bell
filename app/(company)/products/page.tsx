@@ -13,8 +13,8 @@ interface Props {
 
 const Products = async ({ searchParams: { name } }: Props) => {
   const session = await getSession()
-  const foods = await getFoodsByCompany(session?.user.sub || '', name?.replaceAll('%20', ' ') || '')
-  const categories = await getCompanyCategories(session?.user.sub || '')
+  const foods = await getFoodsByCompany(session?.user.id || '', name?.replaceAll('%20', ' ') || '')
+  const categories = await getCompanyCategories(session?.user.id || '')
 
   return (
     <div className='mt-4 flex flex-col lg:flex-row gap-x-16 mr-2 max-[500px]:-ml-10'>

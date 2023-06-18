@@ -9,11 +9,11 @@ import Comments from '../components/Comments'
 
 const Dashboard = async () => {
   const session = await getSession()
-  const company = await getRestaurantInfo(session?.user.sub || '')
-  const offerFoods = await getOfferFoodsByCompany(session?.user.sub || '')
+  const company = await getRestaurantInfo(session?.user.id || '')
+  const offerFoods = await getOfferFoodsByCompany(session?.user.id || '')
 
   return (
-    <div className='flex flex-col lg:flex-row gap-4 max-[500px]:-ml-10'>
+    <div className='flex flex-col lg:flex-row gap-4 max-[500px]:-ml-10 pb-3'>
       <div>
         <div className='border-2 border-title rounded-xl mt-10 py-4 pl-5 pr-8 relative'>
           <h3 className='text-lg font-bold mb-2'>Datos</h3>

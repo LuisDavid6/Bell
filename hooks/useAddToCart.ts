@@ -4,7 +4,6 @@ interface Product {
   userId: string
   foodId: string
   cant: number
-  isNewCompany: boolean
 }
 
 const URL = process.env.NEXT_PUBLIC_URL

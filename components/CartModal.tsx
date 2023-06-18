@@ -33,7 +33,7 @@ const CartModal: React.FC<Props> = ({ isOpen, closeModal, email }) => {
       foodId,
       cant,
       userId: cart.user,
-      isNewCompany: false,
+      company: cart.company,
     })
     mutate()
   }
