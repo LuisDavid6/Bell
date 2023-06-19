@@ -1,6 +1,7 @@
 'use client'
 import useAddToCart from '@/hooks/useAddToCart'
 import useGetCart from '@/hooks/useGetCart'
+import useNewOrder from '@/hooks/useNewOrder'
 import { convertPrice } from '@/pipes/convertPrice.pipe'
 import { FoodCart } from '@/types'
 import { MinusSmallIcon, PlusSmallIcon, TrashIcon } from '@heroicons/react/24/solid'
@@ -33,9 +34,18 @@ const CartModal: React.FC<Props> = ({ isOpen, closeModal, email }) => {
       foodId,
       cant,
       userId: cart.user,
-      company: cart.company,
     })
     mutate()
+  }
+
+  const confirmOrder = async () => {
+    try {
+      const newOrder = await useNewOrder(cart.user)
+      mutate()
+      console.log(newOrder)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   if (!isOpen) return null
@@ -48,7 +58,7 @@ const CartModal: React.FC<Props> = ({ isOpen, closeModal, email }) => {
           isVisible ? '' : 'translate-x-full'
         } max-w-md min-w-[280px] md:min-w-[350px] min-h-screen h-fit bg-white transform duration-300 drop-shadow-md`}
       >
-        {cart?.company && (
+        {cart?.company ? (
           <div className='flex flex-col mx-2 mt-1 pb-4 gap-4 items-center'>
             <h2 className='text-title italic font-bold'>{cart.company.name}</h2>
             {cart.foods.map(({ id, food, cant }: FoodCart) => {
@@ -88,11 +98,19 @@ const CartModal: React.FC<Props> = ({ isOpen, closeModal, email }) => {
               {convertPrice(cart.total + cart.company.shipping)}
             </h1>
             <button
+              onClick={confirmOrder}
               className='bg-btn py-2 px-4 text-white rounded-full transition duration-500
                 ease-in-out hover:scale-110 hover:bg-btn2'
             >
               Realizar pedido
             </button>
+          </div>
+        ) : (
+          <div className='mt-6'>
+            <h3 className='text-center mb-10'>Tu carrito está vacío</h3>
+            <h3 className='text-center text-title italic mx-3'>
+              Los productos que agregues aparecerán aquí
+            </h3>
           </div>
         )}
       </div>
