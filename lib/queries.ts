@@ -3,7 +3,7 @@ import axios from 'axios'
 const URL = process.env.BACK_URL || process.env.NEXT_PUBLIC_URL
 
 export const getRestaurants = () => {
-  return fetch(`${URL}/companies`).then((data) => data.json())
+  return fetch(`${URL}/companies`, { cache: 'no-cache' }).then((data) => data.json())
 }
 
 export const getCategories = () => {
@@ -26,7 +26,7 @@ export const getAllFoods = async () => {
 }
 
 export const getFoodsByCategory = async (category: string) => {
-  const response = await fetch(`${URL}/foods/category/${category}`)
+  const response = await fetch(`${URL}/foods/category/${category}`, { cache: 'no-cache' })
   return await response.json()
 }
 

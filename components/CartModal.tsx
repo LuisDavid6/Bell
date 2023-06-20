@@ -2,6 +2,7 @@
 import useAddToCart from '@/hooks/useAddToCart'
 import useGetCart from '@/hooks/useGetCart'
 import useNewOrder from '@/hooks/useNewOrder'
+import { errorAlert, successAlert } from '@/lib/alerts'
 import { convertPrice } from '@/pipes/convertPrice.pipe'
 import { FoodCart } from '@/types'
 import { MinusSmallIcon, PlusSmallIcon, TrashIcon } from '@heroicons/react/24/solid'
@@ -40,11 +41,11 @@ const CartModal: React.FC<Props> = ({ isOpen, closeModal, email }) => {
 
   const confirmOrder = async () => {
     try {
-      const newOrder = await useNewOrder(cart.user)
+      await useNewOrder(cart.user)
       mutate()
-      console.log(newOrder)
+      successAlert('pedido realizado')
     } catch (error) {
-      console.log(error)
+      errorAlert('un error ha ocurrido')
     }
   }
 

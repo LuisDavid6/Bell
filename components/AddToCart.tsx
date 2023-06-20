@@ -3,6 +3,7 @@ import { FaCartPlus } from 'react-icons/fa'
 import useStore from '@/lib/store'
 import useAddToCart from '@/hooks/useAddToCart'
 import { getUserByEmail } from '@/lib/queries'
+import { errorAlert, successAlert } from '@/lib/alerts'
 
 interface Product {
   id: string
@@ -31,7 +32,8 @@ const AddToCart: React.FC<Props> = ({ product: { id, cant }, closeModal }) => {
 
     if (userData) setUser(userData)
 
-    console.log(response)
+    if (response === 'success') successAlert('Producto agregado al carrito')
+    else errorAlert('un error ha ocurrido')
   }
 
   return (
