@@ -3,13 +3,14 @@ import 'react-toastify/dist/ReactToastify.css'
 
 export const successAlert = (msj: string) => {
   toast.success(msj, {
-    position: 'top-center',
+    position: 'bottom-center',
     autoClose: 1000,
     hideProgressBar: true,
     closeOnClick: true,
     pauseOnHover: true,
     draggable: true,
     theme: 'light',
+    style: { backgroundColor: '#fff2e5' },
   })
 }
 

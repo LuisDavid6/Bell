@@ -1,0 +1,50 @@
+'use client'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+
+const Menu = () => {
+  const pathname = usePathname()
+
+  const isActive = (patch: string) => {
+    return pathname.includes(patch)
+  }
+
+  return (
+    <div className='bg-bg px-4 py-3 flex justify-between items-center'>
+      <Link href='/home'>
+        <h1 className='text-4xl text-btn font-bold'> Bell's </h1>
+      </Link>
+      <div className='flex items-center'>
+        <Link href='profile/edit'>
+          <section
+            className={`${
+              isActive('edit') && 'bg-title text-white'
+            } py-2 px-3 rounded-se-2xl rounded-es-2xl cursor-pointer`}
+          >
+            <h5 className='text-lg font-semibold'>Editar datos</h5>
+          </section>
+        </Link>
+        <Link href='profile/orders'>
+          <section
+            className={`${
+              isActive('orders') && 'bg-title text-white'
+            } py-2 px-3 rounded-se-2xl rounded-es-2xl cursor-pointer`}
+          >
+            <h5 className='text-lg font-semibold'>Pedidos</h5>
+          </section>
+        </Link>
+        <Link href='profile/history'>
+          <section
+            className={`${
+              isActive('history') && 'bg-title text-white'
+            } py-2 px-3 rounded-se-2xl rounded-es-2xl cursor-pointer`}
+          >
+            <h5 className='text-lg font-semibold'>Historial</h5>
+          </section>
+        </Link>
+      </div>
+    </div>
+  )
+}
+
+export default Menu

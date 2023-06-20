@@ -3,6 +3,7 @@ import React from 'react'
 import LogOutButton from '@/components/LogoutButton'
 import Cart from '@/components/Cart'
 import Search from '@/components/Search'
+import { UserCircleIcon } from '@heroicons/react/24/solid'
 
 interface Props {
   email: string
@@ -20,9 +21,12 @@ const NavBar: React.FC<Props> = ({ email }) => {
         </div>
 
         {email ? (
-          <div className='flex gap-2'>
+          <div className='flex items-center gap-2'>
             <Cart email={email} />
             <LogOutButton />
+            <Link href='profile/edit'>
+              <UserCircleIcon className='w-8 transition duration-500 ease-in-out hover:scale-110 hover:text-title' />
+            </Link>
           </div>
         ) : (
           <div className='flex gap-2'>
