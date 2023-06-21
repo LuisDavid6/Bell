@@ -10,18 +10,18 @@ const Menu = () => {
   }
 
   return (
-    <div className='bg-bg px-4 py-3 flex justify-between items-center'>
+    <div className='bg-bg px-4 py-3 flex justify-between items-center max-sm:flex-col max-sm:gap-5'>
       <Link href='/home'>
         <h1 className='text-4xl text-btn font-bold'> Bell's </h1>
       </Link>
-      <div className='flex items-center'>
+      <div className='flex items-center font-semibold text-lg max-sm:text-sm'>
         <Link href='profile/edit'>
           <section
             className={`${
               isActive('edit') && 'bg-title text-white'
             } py-2 px-3 rounded-se-2xl rounded-es-2xl cursor-pointer`}
           >
-            <h5 className='text-lg font-semibold'>Editar datos</h5>
+            <h5>Editar datos</h5>
           </section>
         </Link>
         <Link href='profile/orders'>
@@ -30,7 +30,7 @@ const Menu = () => {
               isActive('orders') && 'bg-title text-white'
             } py-2 px-3 rounded-se-2xl rounded-es-2xl cursor-pointer`}
           >
-            <h5 className='text-lg font-semibold'>Pedidos</h5>
+            <h5>Pedidos</h5>
           </section>
         </Link>
         <Link href='profile/history'>
@@ -39,7 +39,7 @@ const Menu = () => {
               isActive('history') && 'bg-title text-white'
             } py-2 px-3 rounded-se-2xl rounded-es-2xl cursor-pointer`}
           >
-            <h5 className='text-lg font-semibold'>Historial</h5>
+            <h5>Historial</h5>
           </section>
         </Link>
       </div>
