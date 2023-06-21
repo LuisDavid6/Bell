@@ -11,9 +11,12 @@ interface User {
 const URL = process.env.NEXT_PUBLIC_URL
 
 const useUserRegister = async (user: User) => {
-  const response = await axios.post(`${URL}/users`, user)
-
-  return response.data
+  try {
+    const response = await axios.post(`${URL}/users`, user)
+    return response.data
+  } catch (error) {
+    return error
+  }
 }
 
 export default useUserRegister

@@ -10,7 +10,7 @@ const Menu = () => {
   }
 
   return (
-    <div className='bg-bg px-4 py-3 flex justify-between items-center max-sm:flex-col max-sm:gap-5'>
+    <div className='bg-bg px-4 py-4 flex justify-between items-center max-sm:flex-col max-sm:gap-5'>
       <Link href='/home'>
         <h1 className='text-4xl text-btn font-bold'> Bell's </h1>
       </Link>

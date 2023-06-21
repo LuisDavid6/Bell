@@ -1,11 +1,14 @@
 'use client'
 import { FC, ChangeEvent, useState } from 'react'
 import Image from 'next/image'
-import { PencilIcon, PencilSquareIcon } from '@heroicons/react/24/solid'
+import { PencilIcon } from '@heroicons/react/24/solid'
 import Input from './Input'
+import useUpdateUser from '@/hooks/useUpdateUser'
+import { errorAlert, successAlert } from '@/lib/alerts'
 
 interface Props {
   info: {
+    id: string
     username: string
     email: string
     tel: string
@@ -13,8 +16,14 @@ interface Props {
     avatar: string
   }
 }
-const EditUser: FC<Props> = ({ info: { username, email, tel, address, avatar } }) => {
+const EditUser: FC<Props> = ({ info: { id, username, email, tel, address, avatar } }) => {
   const [user, setUser] = useState({ username, email, tel, address, avatar })
+
+  const handleSave = async () => {
+    const response = await useUpdateUser(id, user)
+    if (response === 'success') successAlert('Datos actualizados con éxito')
+    else errorAlert('Un error ha ocurrido')
+  }
 
   return (
     <div className='flex flex-col sm:ml-16 px-2'>
@@ -35,7 +44,7 @@ const EditUser: FC<Props> = ({ info: { username, email, tel, address, avatar } }
 
       <hr />
 
-      <div className='flex flex-col gap-y-5 mt-8 max-w-lg'>
+      <div className='flex flex-col gap-y-5 mt-8 max-w-lg pb-2'>
         <section className='flex items-center gap-5'>
           <h4 className='text-lg font-bold w-1/4'>username:</h4>
           <Input
@@ -80,6 +89,12 @@ const EditUser: FC<Props> = ({ info: { username, email, tel, address, avatar } }
             }
           />
         </section>
+        <button
+          onClick={handleSave}
+          className='bg-btn hover:bg-btn2 w-3/6 place-self-center mt-10 py-2 rounded-lg text-white'
+        >
+          Guardar cambios
+        </button>
       </div>
     </div>
   )

@@ -11,9 +11,12 @@ interface Restaurant {
 const URL = process.env.NEXT_PUBLIC_URL
 
 const useRestaurantRegister = async (restaurant: Restaurant) => {
-  const response = await axios.post(`${URL}/companies`, restaurant)
-
-  return response.data
+  try {
+    const response = await axios.post(`${URL}/companies`, restaurant)
+    return response.data
+  } catch (error) {
+    return error
+  }
 }
 
 export default useRestaurantRegister

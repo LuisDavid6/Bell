@@ -16,12 +16,13 @@ export const successAlert = (msj: string) => {
 
 export const errorAlert = (msj: string) => {
   toast.error(msj, {
-    position: 'top-center',
+    position: 'bottom-center',
     autoClose: 3000,
     hideProgressBar: true,
     closeOnClick: true,
     pauseOnHover: true,
     draggable: true,
-    theme: 'dark',
+    theme: 'light',
+    style: { backgroundColor: '#fff2e5' },
   })
 }

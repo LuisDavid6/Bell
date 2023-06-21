@@ -11,6 +11,7 @@ const Edit = async () => {
     <div>
       <EditUser
         info={{
+          id: user.id,
           username: user.username,
           email: user.email,
           tel: user.tel,

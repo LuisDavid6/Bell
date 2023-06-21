@@ -9,9 +9,12 @@ interface Product {
 const URL = process.env.NEXT_PUBLIC_URL
 
 const useAddToCart = async (product: Product) => {
-  const response = await axios.post(`${URL}/cart`, product)
-
-  return response.data
+  try {
+    const response = await axios.post(`${URL}/cart`, product)
+    return response.data
+  } catch (error) {
+    return error
+  }
 }
 
 export default useAddToCart
