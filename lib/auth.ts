@@ -54,13 +54,14 @@ export const authOptions: AuthOptions = {
     async signIn({ user, account }) {
       if (account?.provider === 'google') {
         try {
-          const exist = await axios.get(`${URL}/auth/verify/${user.email}`)
+          const { data } = await axios.get(`${URL}/auth/verify/${user.email}`)
 
-          if (!exist) {
+          if (!data) {
             const userData = {
               username: user.name,
               email: user.email,
               password: user.id,
+              avatar: user.image,
             }
 
             const response = await axios.post(`${URL}/users`, userData)
