@@ -61,7 +61,6 @@ export const authOptions: AuthOptions = {
               username: user.name,
               email: user.email,
               password: user.id,
-              avatar: user.image,
             }
 
             const response = await axios.post(`${URL}/users`, userData)
