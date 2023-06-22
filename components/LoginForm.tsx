@@ -30,8 +30,7 @@ const LoginForm = () => {
   }
 
   return (
-    <div className='max-w-sm flex flex-col items-center'>
-      Loginform
+    <div className='max-w-sm flex flex-col items-center gap-4'>
       <div className='flex gap-2 items-baseline'>
         <UserIcon className='w-6' />
         <Input
@@ -47,7 +46,7 @@ const LoginForm = () => {
         <Input
           id='password'
           type='password'
-          label='Password'
+          label='Contraseña'
           value={password}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
         />
@@ -57,10 +56,17 @@ const LoginForm = () => {
                 ease-in-out hover:scale-110 hover:bg-btn2 p-2 mt-5 w-9/12'
         onClick={login}
       >
-        Login
+        Ingresar
+      </button>
+      <button
+        className='bg-black py-2 px-4 text-white rounded-full transition duration-500
+                ease-in-out hover:scale-110 hover:bg-stone-800 p-2 mt-5 w-9/12'
+        onClick={() => signIn('google')}
+      >
+        Ingresa con Google
       </button>
       {error.status && (
-        <div className='mt-10 bg-red-500 p-3 rounded'>
+        <div className='mt-10 bg-red-500 p-3 rounded text-white'>
           <h3 className='text-center mb-2 text-lg font-bold'>! Error</h3>
           <h3 className='text-center font-semibold'>{error.message}</h3>
         </div>

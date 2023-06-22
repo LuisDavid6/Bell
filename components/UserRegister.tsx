@@ -4,6 +4,7 @@ import useUserRegister from '@/hooks/useUserRegister'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
 import { useRouter } from 'next/navigation'
+import { signIn } from 'next-auth/react'
 
 const UserRegister = () => {
   const router = useRouter()
@@ -31,18 +32,20 @@ const UserRegister = () => {
             .required('*Este campo es requerido')
             .oneOf([Yup.ref('password')], 'Debe coincidir con la contraseña'),
           address: Yup.string().required('*Este campo es requerido'),
-          tel: Yup.string().required('*Este campo es requerido'),
+          tel: Yup.number()
+            .typeError('*Solo puede contener números')
+            .required('*Este campo es requerido'),
         })}
         onSubmit={async ({ username, email, password, address, tel }) => {
           const register = await useUserRegister({
             username,
             email,
             password,
-            address: [address],
+            address,
             tel: tel.toString(),
           })
 
-          if (register === 'success') router.push('/login')
+          if (register?.username) router.push('/login')
         }}
       >
         {({ values, errors, handleSubmit, handleChange }) => (
@@ -108,7 +111,7 @@ const UserRegister = () => {
                   id='tel'
                   label='teléfono'
                   value={values.tel}
-                  type='number'
+                  type='text'
                   onChange={handleChange}
                   register
                 />
@@ -120,6 +123,12 @@ const UserRegister = () => {
               className='bg-btn hover:bg-btn2 w-3/6 md:w-2/6 place-self-center mt-10 py-2 rounded-lg text-white'
             >
               Crear cuenta
+            </button>
+            <button
+              className='bg-black hover:bg-zinc-800 w-3/6 md:w-2/6 place-self-center mt-10 py-2 rounded-lg text-white'
+              onClick={() => signIn('google')}
+            >
+              Regístrate con Google
             </button>
           </form>
         )}

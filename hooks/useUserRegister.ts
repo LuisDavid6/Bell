@@ -4,7 +4,7 @@ interface User {
   username: string
   email: string
   password: string
-  address: string[]
+  address: string
   tel: string
 }
 
