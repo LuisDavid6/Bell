@@ -63,3 +63,14 @@ export interface User {
   cart: Cart
   orders: any
 }
+
+export interface Order {
+  id: string
+  ticket: string
+  date: string
+  total: number
+  status: string
+  foods: Food[]
+  company: string
+  user: string
+}

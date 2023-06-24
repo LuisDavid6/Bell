@@ -4,7 +4,7 @@ import pending from '@/assets/images/pending.png'
 import progress from '@/assets/images/progress.png'
 import delivered from '@/assets/images/delivered.png'
 
-const Orders = () => {
+const OrdersHome = () => {
   return (
     <div className=''>
       <h3 className='text-lg font-bold mb-4'>Pedidos</h3>
@@ -29,4 +29,4 @@ const Orders = () => {
   )
 }
 
-export default Orders
+export default OrdersHome

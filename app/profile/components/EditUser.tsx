@@ -35,7 +35,9 @@ const EditUser: FC<Props> = ({ info: { id, username, email, tel, address, avatar
           height={100}
           className='rounded-full'
         />
-        <PencilIcon className='w-5 absolute bottom-0 left-24' />
+        <div className='absolute bottom-0 left-20 bg-neutral-200 rounded-full p-1 cursor-pointer'>
+          <PencilIcon className='w-5' />
+        </div>
         <div className='flex flex-col gap-1'>
           <h2 className='text-xl font-bold'>{username}</h2>
           <h3 className='text-md font-light'>{email}</h3>

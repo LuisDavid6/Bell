@@ -41,7 +41,7 @@ const Menu = () => {
             <h5 className='text-lg font-semibold'>Productos</h5>
           </section>
         </Link>
-        <Link href='/orders'>
+        <Link href='/orders?status=pending'>
           <section
             className={`${
               isActive('orders') && 'bg-title text-white'

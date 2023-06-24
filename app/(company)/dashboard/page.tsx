@@ -4,7 +4,7 @@ import { convertPrice } from '@/pipes/convertPrice.pipe'
 import { PencilSquareIcon } from '@heroicons/react/24/outline'
 import React from 'react'
 import OfferFoods from '../components/OfferFoods'
-import Orders from '../components/Orders'
+import OrdersHome from '../components/OrdersHome'
 import Comments from '../components/Comments'
 
 const Dashboard = async () => {
@@ -48,7 +48,7 @@ const Dashboard = async () => {
           <OfferFoods foods={offerFoods.slice(0, 3)} />
         </div>
         <div className='mt-10 border-2 border-title rounded-xl p-4'>
-          <Orders />
+          <OrdersHome />
         </div>
       </div>
       <div className='border-2 border-title rounded-xl mt-10 py-4 pl-5 pr-8'>

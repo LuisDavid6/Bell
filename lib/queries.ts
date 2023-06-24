@@ -55,6 +55,12 @@ export const getUserByEmail = async (email: string) => {
   return response.data
 }
 
+export const getCompanyOrders = async (companyId: string) => {
+  return fetch(`${URL}/orders/company/${companyId}`, { cache: 'no-cache' }).then((data) =>
+    data.json()
+  )
+}
+
 export const verifyUser = async (email: string) => {
   return fetch(`${URL}/auth/verify/${email}`, { cache: 'force-cache' }).then((data) => data.json())
 }
