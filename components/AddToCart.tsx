@@ -25,7 +25,7 @@ const AddToCart: React.FC<Props> = ({ product: { id, cant }, closeModal }) => {
       foodId: id,
       cant,
     })
-
+    console.log(response)
     closeModal()
 
     const userData = await getUserByEmail(user?.email || '')
