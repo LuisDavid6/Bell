@@ -10,8 +10,6 @@ const URL = process.env.NEXT_PUBLIC_URL
 
 const useAddToCart = async (product: Product) => {
   try {
-    // const response = await fetch(`${URL}/cart`, { method: 'POST', body: JSON.stringify(product) })
-    // return response
     const response = await axios.post(`${URL}/cart`, product)
     return response.data
   } catch (error) {

@@ -70,7 +70,7 @@ export interface Order {
   date: string
   total: number
   status: string
-  foods: FoodCart[]
+  foods: Food[]
   company: string
   user: string
 }
