@@ -1,8 +1,10 @@
+'use client'
 import { convertPrice } from '@/pipes/convertPrice.pipe'
 import { Order } from '@/types'
 import { XMarkIcon } from '@heroicons/react/24/solid'
 import Image from 'next/image'
 import { FC } from 'react'
+import OrderStatusButton from './OrderStatusButton'
 
 interface Props {
   closeModal: () => void
@@ -61,19 +63,7 @@ const OrderModal: FC<Props> = ({ closeModal, order }) => {
             <h2 className='font-bold'>Total {convertPrice(order.total)}</h2>
           </section>
           <section className='w-full flex justify-center mt-10'>
-            {order.status === 'pending' ? (
-              <button className='bg-amber-500 hover:bg-amber-600 w-3/6 md:w-2/6 place-self-center py-2 rounded-lg text-white'>
-                En preparación
-              </button>
-            ) : order.status === 'inProccess' ? (
-              <button className='bg-blue-500 hover:bg-blue-600 w-3/6 md:w-2/6 place-self-center py-2 rounded-lg text-white'>
-                Enviar
-              </button>
-            ) : order.status === 'shipping' ? (
-              <button className='bg-green-500 hover:bg-green-600 w-3/6 md:w-3/6 place-self-center py-2 rounded-lg text-white'>
-                Confirmar entrega
-              </button>
-            ) : null}
+            <OrderStatusButton status={order.status} id={order.id} closeModal={closeModal} />
           </section>
         </div>
       </div>
