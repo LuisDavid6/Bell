@@ -65,14 +65,12 @@ const OrdersList: FC<Props> = ({ orders }) => {
             <Order order={order} key={order.id} />
           ))}
       </div>
-      <div className='rounded-lg bg-bg2 p-3 mt-10'>
-        <div>
-          <h2 className='text-xl font-extrabold max-md:mb-5'>Historial Pedidos</h2>
-          <hr />
-          {orders.map((order) => (
-            <Order order={order} key={order.id} history={true} />
-          ))}
-        </div>
+      <div className='rounded-lg bg-bg2 p-3 mt-20'>
+        <h2 className='text-xl font-extrabold max-md:mb-5'>Historial Pedidos</h2>
+        <hr />
+        {orders.map((order) => (
+          <Order order={order} key={order.id} history={true} />
+        ))}
       </div>
     </div>
   )

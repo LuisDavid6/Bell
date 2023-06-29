@@ -41,9 +41,11 @@ const CartModal: React.FC<Props> = ({ isOpen, closeModal, email }) => {
 
   const confirmOrder = async () => {
     try {
-      await useNewOrder(cart.user)
+      const response = await useNewOrder(cart.user)
       mutate()
-      successAlert('pedido realizado')
+
+      if (response === 'success') successAlert('pedido realizado')
+      else errorAlert('un error ha ocurrido')
     } catch (error) {
       errorAlert('un error ha ocurrido')
     }
