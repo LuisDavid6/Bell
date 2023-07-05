@@ -61,6 +61,10 @@ export const getCompanyOrders = async (companyId: string) => {
   )
 }
 
+export const getUserOrders = async (userId: string) => {
+  return fetch(`${URL}/orders/user/${userId}`, { cache: 'no-cache' }).then((data) => data.json())
+}
+
 export const verifyUser = async (email: string) => {
   return fetch(`${URL}/auth/verify/${email}`, { cache: 'force-cache' }).then((data) => data.json())
 }

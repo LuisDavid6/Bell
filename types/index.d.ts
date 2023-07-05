@@ -69,8 +69,15 @@ export interface Order {
   ticket: string
   date: string
   total: number
-  status: string
+  status: OrderStatus
   foods: FoodCart[]
-  company: string
+  company: Restaurant
   user: string
+}
+
+export enum OrderStatus {
+  Pending = 'pending',
+  InProccess = 'inProccess',
+  Shipping = 'shipping',
+  Received = 'received',
 }
