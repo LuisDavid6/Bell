@@ -37,10 +37,7 @@ const AddToCart: React.FC<Props> = ({ product: { id, cant }, closeModal }) => {
   }
 
   return (
-    <button
-      className='flex p-2 items-center gap-2 bg-btn hover:bg-btn2 text-white rounded'
-      onClick={add}
-    >
+    <button className='flex p-2 items-center gap-2 bg-btn hover:bg-btn2 text-white rounded' onClick={add}>
       <FaCartPlus />
       Agregar
     </button>

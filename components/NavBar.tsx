@@ -4,6 +4,8 @@ import LogOutButton from '@/components/LogoutButton'
 import Cart from '@/components/Cart'
 import Search from '@/components/Search'
 import { UserCircleIcon } from '@heroicons/react/24/solid'
+import Image from 'next/image'
+import logo from '@/assets/images/logo.png'
 
 interface Props {
   email: string
@@ -14,7 +16,7 @@ const NavBar: React.FC<Props> = ({ email }) => {
     <div className='bg-bg px-4 py-4'>
       <div className='flex gap-5 justify-between items-center'>
         <Link href='/home'>
-          <h1 className='text-4xl text-btn font-bold'> Bell's </h1>
+          <Image src={logo} alt='logo' width={170} height={100} />
         </Link>
         <div className='w-3/6 max-[580px]:hidden'>
           <Search />

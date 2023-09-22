@@ -17,12 +17,9 @@ const Restaurant = async ({ params: { id } }: Props) => {
 
   return (
     <div className='flex flex-col'>
-      <div className='relative h-52 overflow-hidden'>
+      <div className='relative h-52 overflow-hidden sm:h-80 lg:h-96'>
         <Image
-          src={
-            restaurant.image ||
-            'https://www.pequerecetas.com/wp-content/uploads/2013/07/hamburguesas-caseras-receta.jpg'
-          }
+          src={restaurant.image || 'https://www.pequerecetas.com/wp-content/uploads/2013/07/hamburguesas-caseras-receta.jpg'}
           alt='restaurant image'
           fill
           className='object-cover opacity-80'

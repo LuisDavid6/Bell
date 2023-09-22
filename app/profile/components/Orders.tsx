@@ -69,6 +69,14 @@ const Orders = ({ orders }: { orders: Order[] }) => {
             <h2 className='text-gray-600'>ticket:</h2>
             <h2 className='font-bold ml-5'>{orderInfo.ticket}</h2>
           </section>
+          <section>
+            <h2 className='text-gray-600'>costo de envio:</h2>
+            <h2 className='font-bold ml-5'>{convertPrice(orderInfo.company.shipping)}</h2>
+          </section>
+          <section>
+            <h2 className='text-gray-600'>Total a pagar:</h2>
+            <h2 className='font-bold ml-5'>{convertPrice(orderInfo.total)}</h2>
+          </section>
           <section className='mt-5'>
             <h2 className='text-gray-600 mb-4'>Comidas:</h2>
             {orderInfo.foods.map(({ food, cant, total }: FoodCart) => {

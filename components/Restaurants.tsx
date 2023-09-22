@@ -17,14 +17,11 @@ const Restaurants: React.FC<Props> = ({ restaurants }) => {
           <Link href={`restaurant/${restaurant.id}`} key={restaurant.name}>
             <div
               className='block max-w-xs rounded-lg bg-slate-50 shadow-lg text-black transition duration-500
-               ease-in-out hover:scale-110 cursor-pointer'
+               ease-in-out hover:scale-110 cursor-pointer relative'
             >
               <Image
                 className='rounded-t-lg'
-                src={
-                  restaurant.image ||
-                  'https://www.pequerecetas.com/wp-content/uploads/2013/07/hamburguesas-caseras-receta.jpg'
-                }
+                src={restaurant.image || 'https://www.pequerecetas.com/wp-content/uploads/2013/07/hamburguesas-caseras-receta.jpg'}
                 alt={restaurant.name}
                 width={320}
                 height={200}
@@ -37,6 +34,10 @@ const Restaurants: React.FC<Props> = ({ restaurants }) => {
                   <RiEBike2Fill />
                   <span className=''>{convertPrice(restaurant.shipping)}</span>
                 </div>
+              </div>
+              <div className='absolute right-0 top-0 flex items-center gap-2 bg-green-500 rounded-md px-2 py-1 opacity-80'>
+                <RiEBike2Fill />
+                <span className='pr-1 font-bold'>{convertPrice(restaurant.shipping)}</span>
               </div>
             </div>
           </Link>
