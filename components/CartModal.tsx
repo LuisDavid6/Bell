@@ -59,7 +59,7 @@ const CartModal: React.FC<Props> = ({ isOpen, closeModal, email }) => {
       <div
         className={`${
           isVisible ? '' : 'translate-x-full'
-        } max-w-md min-w-[280px] md:min-w-[350px] min-h-screen h-fit bg-white transform duration-300 drop-shadow-md`}
+        } max-w-md min-w-[280px] md:min-w-[350px] min-h-screen h-fit bg-white dark:bg-gradient-to-r dark:from-black dark:to-neutral-900 dark:text-white transform duration-300 drop-shadow-md`}
       >
         {cart?.company ? (
           <div className='flex flex-col mx-2 mt-1 pb-4 gap-4 items-center'>
@@ -72,34 +72,21 @@ const CartModal: React.FC<Props> = ({ isOpen, closeModal, email }) => {
                     <h5 className='text-left'>{convertPrice(food.price)}</h5>
                     <div className='border-2 p-1 flex place-self-center gap-5 w-fit'>
                       {cant > 1 ? (
-                        <MinusSmallIcon
-                          className='w-6 cursor-pointer'
-                          onClick={() => handleCant(-1, food.id)}
-                        />
+                        <MinusSmallIcon className='w-6 cursor-pointer' onClick={() => handleCant(-1, food.id)} />
                       ) : (
-                        <TrashIcon
-                          className='w-5 cursor-pointer'
-                          onClick={() => handleCant(-1, food.id)}
-                        />
+                        <TrashIcon className='w-5 cursor-pointer' onClick={() => handleCant(-1, food.id)} />
                       )}
                       <h1 className='font-extrabold'>{cant}</h1>
-                      <PlusSmallIcon
-                        className='w-5 cursor-pointer'
-                        onClick={() => handleCant(1, food.id)}
-                      />
+                      <PlusSmallIcon className='w-5 cursor-pointer' onClick={() => handleCant(1, food.id)} />
                     </div>
                   </div>
                   <Image src={food.img} alt={food.name} width={130} height={100} />
                 </div>
               )
             })}
-            <h3 className='font-semibold mt-4 text-left w-full'>
-              Domicilio {convertPrice(cart.company.shipping)}
-            </h3>
+            <h3 className='font-semibold mt-4 text-left w-full'>Domicilio {convertPrice(cart.company.shipping)}</h3>
             <h2 className='mt-4 font-bold'>Total a pagar</h2>
-            <h1 className='font-bold text-title text-xl mb-5'>
-              {convertPrice(cart.total + cart.company.shipping)}
-            </h1>
+            <h1 className='font-bold text-title text-xl mb-5'>{convertPrice(cart.total + cart.company.shipping)}</h1>
             <button
               onClick={confirmOrder}
               className='bg-btn py-2 px-4 text-white rounded-full transition duration-500
@@ -111,9 +98,7 @@ const CartModal: React.FC<Props> = ({ isOpen, closeModal, email }) => {
         ) : (
           <div className='mt-6'>
             <h3 className='text-center mb-10'>Tu carrito está vacío</h3>
-            <h3 className='text-center text-title italic mx-3'>
-              Los productos que agregues aparecerán aquí
-            </h3>
+            <h3 className='text-center text-title italic mx-3'>Los productos que agregues aparecerán aquí</h3>
           </div>
         )}
       </div>

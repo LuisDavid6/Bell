@@ -3,8 +3,7 @@ import React from 'react'
 import { getSession } from '@/lib/getSession'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
-import Image from 'next/image'
-import logo from '@/assets/images/logo.png'
+import Logo from '@/components/Logo'
 
 const Login = async () => {
   const session = await getSession()
@@ -16,7 +15,7 @@ const Login = async () => {
   return (
     <div className='w-full h-screen flex flex-col justify-center items-center gap-8'>
       <Link href='/home'>
-        <Image src={logo} alt='logo' width={300} height={100} />
+        <Logo width={300} height={100} />
       </Link>
       <LoginForm />
     </div>

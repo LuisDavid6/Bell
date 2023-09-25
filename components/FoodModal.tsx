@@ -44,13 +44,10 @@ const FoodModal: React.FC<Props> = ({ isOpen, closeModal, data }) => {
       <div className='relative w-auto mx-auto max-w-3xl rounded-lg overflow-hidden'>
         <div
           className={`${isVisible ? 'scale-100' : 'scale-0'}
-          transform duration-300 relative flex-auto bg-white drop-shadow-md rounded-lg`}
+          transform duration-300 relative flex-auto bg-white dark:bg-bgDark drop-shadow-md rounded-lg`}
         >
           <div className='relative max-h-full min-w-[350px]'>
-            <div
-              onClick={() => handleClose()}
-              className='absolute top-2 right-2 rounded-full p-2 bg-slate-100 cursor-pointer'
-            >
+            <div onClick={() => handleClose()} className='absolute top-2 right-2 rounded-full p-2 bg-slate-100 cursor-pointer'>
               <XMarkIcon className='text-black w-6' />
             </div>
 

@@ -31,7 +31,7 @@ const Foods: React.FC<Props> = ({ foods }) => {
               setFoodData(food)
               openModal()
             }}
-            className='flex gap-3 w-full rounded-2xl shadow-lg mt-6 transition duration-500 ease-in-out hover:scale-105 cursor-pointer bg-bg'
+            className='flex gap-3 w-full rounded-2xl shadow-lg mt-6 transition duration-500 ease-in-out hover:scale-105 cursor-pointer bg-bg dark:bg-bgDark'
           >
             <div className='relative flex items-center'>
               <Image

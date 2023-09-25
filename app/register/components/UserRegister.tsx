@@ -11,7 +11,7 @@ const UserRegister = () => {
 
   return (
     <div>
-      <div className='bg-bg2 p-3 w-full my-5 rounded-lg'>
+      <div className='bg-bg dark:bg-bgDark p-3 w-full my-5 rounded-lg'>
         <h3 className='md:text-xl font-bold text-center'>¡Regístrate y pide tu comida favorita!</h3>
         <h5 className='text-sm md:text-md text-center'>Contamos con los mejores restaurantes</h5>
       </div>

@@ -5,7 +5,7 @@ const Restaurants = async () => {
   const restaurants = await getRestaurants()
 
   return (
-    <div className='pb-5'>
+    <div className='py-5'>
       <RestaurantsComponent restaurants={restaurants} />
     </div>
   )

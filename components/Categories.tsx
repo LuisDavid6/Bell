@@ -13,7 +13,7 @@ interface Props {
 }
 const Categories: React.FC<Props> = ({ categories }) => {
   return (
-    <div className='py-5 my-5 flex-auto justify-center bg-bg'>
+    <div className='py-10 flex-auto justify-center'>
       <Swiper
         slidesPerView={7}
         spaceBetween={10}
@@ -22,36 +22,40 @@ const Categories: React.FC<Props> = ({ categories }) => {
           disableOnInteraction: false,
         }}
         breakpoints={{
-          300: {
-            slidesPerView: 3,
+          10: {
+            slidesPerView: 1,
             spaceBetween: 5,
           },
-          460: {
-            slidesPerView: 4,
+          300: {
+            slidesPerView: 2,
+            spaceBetween: 5,
+          },
+          470: {
+            slidesPerView: 3,
             spaceBetween: 10,
           },
           560: {
+            slidesPerView: 4,
+            spaceBetween: 10,
+          },
+          720: {
             slidesPerView: 5,
             spaceBetween: 10,
           },
-          670: {
+          900: {
             slidesPerView: 6,
             spaceBetween: 10,
           },
-          850: {
+          1024: {
             slidesPerView: 7,
             spaceBetween: 10,
           },
-          940: {
+          1200: {
             slidesPerView: 8,
             spaceBetween: 10,
           },
-          1024: {
+          1500: {
             slidesPerView: 9,
-            spaceBetween: 10,
-          },
-          1200: {
-            slidesPerView: 10,
             spaceBetween: 10,
           },
         }}
@@ -68,7 +72,7 @@ const Categories: React.FC<Props> = ({ categories }) => {
                     alt={category.name}
                     width={100}
                     height={800}
-                    style={{ objectFit: 'cover', width: '100px', height: '80px' }}
+                    style={{ objectFit: 'cover', width: '450px', height: '150px' }}
                     className='rounded-xl'
                   />
                   <h5 className='text-sm text-center font-semibold'>{category.name}</h5>

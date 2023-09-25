@@ -14,9 +14,7 @@ const SearchFoods = async ({ searchParams: { name } }: Props) => {
     <div>
       <Categories categories={categories} />
       {foods.length < 1 ? (
-        <h1 className='text-center text-title text-xl font-bold mt-10'>
-          ⚠️ No se encontraron resultados...
-        </h1>
+        <h1 className='text-center text-xl font-bold mt-10'>⚠️ No se encontraron resultados...</h1>
       ) : (
         <div className='grid grid-cols-3 gap-3 max-sm:grid-cols-1 max-lg:grid-cols-2 mx-3 w-fit'>
           <Foods foods={foods} />

@@ -16,7 +16,7 @@ const Restaurants: React.FC<Props> = ({ restaurants }) => {
         return (
           <Link href={`restaurant/${restaurant.id}`} key={restaurant.name}>
             <div
-              className='block max-w-xs rounded-lg bg-slate-50 shadow-lg text-black transition duration-500
+              className='block max-w-xs rounded-lg bg-bg dark:bg-bgDark shadow-lg transition duration-500
                ease-in-out hover:scale-110 cursor-pointer relative'
             >
               <Image
@@ -35,7 +35,7 @@ const Restaurants: React.FC<Props> = ({ restaurants }) => {
                   <span className=''>{convertPrice(restaurant.shipping)}</span>
                 </div>
               </div>
-              <div className='absolute right-0 top-0 flex items-center gap-2 bg-green-500 rounded-md px-2 py-1 opacity-80'>
+              <div className='absolute right-0 top-0 flex items-center gap-2 bg-title rounded-md px-2 py-1 opacity-80'>
                 <RiEBike2Fill />
                 <span className='pr-1 font-bold'>{convertPrice(restaurant.shipping)}</span>
               </div>
