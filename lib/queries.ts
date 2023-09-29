@@ -56,9 +56,7 @@ export const getUserByEmail = async (email: string) => {
 }
 
 export const getCompanyOrders = async (companyId: string) => {
-  return fetch(`${URL}/orders/company/${companyId}`, { cache: 'no-cache' }).then((data) =>
-    data.json()
-  )
+  return fetch(`${URL}/orders/company/${companyId}`, { cache: 'no-cache' }).then((data) => data.json())
 }
 
 export const getUserOrders = async (userId: string) => {

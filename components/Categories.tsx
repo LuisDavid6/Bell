@@ -70,10 +70,11 @@ const Categories: React.FC<Props> = ({ categories }) => {
                   <Image
                     src={category.image}
                     alt={category.name}
-                    width={100}
-                    height={800}
-                    style={{ objectFit: 'cover', width: '450px', height: '150px' }}
-                    className='rounded-xl'
+                    width='0'
+                    height='0'
+                    sizes='100vw'
+                    style={{ objectFit: 'cover', width: 'auto', height: '150px' }}
+                    className='w-full h-auto rounded-xl object-cover'
                   />
                   <h5 className='text-sm text-center font-semibold'>{category.name}</h5>
                 </section>

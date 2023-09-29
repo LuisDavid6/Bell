@@ -3,7 +3,6 @@ import Search from '../components/Search'
 import { getCompanyCategories, getFoodsByCompany } from '@/lib/queries'
 import { getSession } from '@/lib/getSession'
 import Foods from '../components/Foods'
-import { PlusSmallIcon } from '@heroicons/react/24/solid'
 import Categories from '../components/Categories'
 import AddProductButton from '../components/AddProductButton'
 

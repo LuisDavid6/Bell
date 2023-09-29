@@ -8,6 +8,7 @@ declare module 'next-auth' {
       role: string
       sub: string
       id: string
+      token?: string
     } & DefaultSession['user']
   }
 }
@@ -18,5 +19,6 @@ declare module 'next-auth/jwt' {
     role: string
     sub: string
     id: string
+    token?: string
   }
 }
