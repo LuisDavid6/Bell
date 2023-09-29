@@ -20,22 +20,13 @@ const Order: FC<Props> = ({ order, history }) => {
   }
 
   const translateStatus = (status: string) => {
-    return status === 'received'
-      ? 'Entregado'
-      : status === 'shipping'
-      ? 'Enviado'
-      : status === 'inProccess'
-      ? 'Preparación'
-      : 'Pendiente'
+    return status === 'received' ? 'Entregado' : status === 'shipping' ? 'Enviado' : status === 'inProccess' ? 'Preparación' : 'Pendiente'
   }
 
   return (
     <>
       {isOpen && <OrderModal closeModal={closeModal} order={order} />}
-      <div
-        className='flex justify-around mt-5 hover:bg-white cursor-pointer max-sm:text-sm'
-        onClick={openModal}
-      >
+      <div className='flex justify-around mt-5 hover:bg-white dark:hover:bg-black cursor-pointer max-sm:text-sm' onClick={openModal}>
         <h3 className='my-2'>{history ? order.date : order.date.substring(11)}</h3>
         <h3 className='my-2'>#{order.ticket}</h3>
         <h3 className={`${history && 'max-md:hidden'} my-2 `}>{convertPrice(order.total)}</h3>

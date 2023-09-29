@@ -21,25 +21,23 @@ const Dashboard = async () => {
           <div className='grid md:grid-cols-2 gap-3 py-3'>
             <section className='text-lg font-bold'>
               <h6>email:</h6>
-              <h5 className='text-md font-medium ml-5 text-gray-600'>{company.email}</h5>
+              <h5 className='text-md font-medium ml-5 text-gray-600 dark:text-gray-400'>{company.email}</h5>
             </section>
             <section className='text-lg font-bold'>
               <h6>teléfono:</h6>
-              <h5 className='text-md font-medium ml-5 text-gray-600'>{company.tel}</h5>
+              <h5 className='text-md font-medium ml-5 text-gray-600 dark:text-gray-400'>{company.tel}</h5>
             </section>
             <section className='text-lg font-bold'>
               <h6>dirección:</h6>
-              <h5 className='text-md font-medium ml-5 text-gray-600'>{company.address}</h5>
+              <h5 className='text-md font-medium ml-5 text-gray-600 dark:text-gray-400'>{company.address}</h5>
             </section>
             <section className='text-lg font-bold'>
               <h6>horarios:</h6>
-              <h5 className='text-md font-medium ml-5 text-gray-600'>{company.horary}</h5>
+              <h5 className='text-md font-medium ml-5 text-gray-600 dark:text-gray-400'>{company.horary}</h5>
             </section>
             <section className='text-lg font-bold'>
               <h6>envio:</h6>
-              <h5 className='text-md font-medium ml-5 text-gray-600'>
-                {convertPrice(company.shipping)}
-              </h5>
+              <h5 className='text-md font-medium ml-5 text-gray-600 dark:text-gray-400'>{convertPrice(company.shipping)}</h5>
             </section>
             <PencilSquareIcon className='w-7 absolute right-0 top-0 mr-2 mt-2 cursor-pointer' />
           </div>
