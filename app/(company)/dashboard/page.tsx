@@ -13,7 +13,7 @@ const Dashboard = async () => {
   const offerFoods = await getOfferFoodsByCompany(session?.user.id || '')
 
   return (
-    <div className='flex flex-col lg:flex-row gap-4 max-[500px]:-ml-10 pb-3'>
+    <div className='w-full flex flex-col justify-center items-center lg:flex-row gap-4 max-[500px]:-ml-10 pb-3'>
       <div>
         <div className='border-2 border-title rounded-xl mt-10 py-4 pl-5 pr-8 relative'>
           <h3 className='text-lg font-bold mb-2'>Datos</h3>

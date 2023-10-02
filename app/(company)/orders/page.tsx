@@ -8,7 +8,7 @@ const Orders = async () => {
   const orders = await getCompanyOrders(session?.user.id || '')
 
   return (
-    <div className='mt-10 md:pl-10 max-[500px]:-ml-10'>
+    <div className='mt-10 container justify-center w-full max-w-7xl max-md:-ml-5'>
       <OrdersList orders={orders} />
     </div>
   )

@@ -21,7 +21,7 @@ const layout = async ({ children }: { children: ReactNode }) => {
       <section className='flex md:hidden'>
         <MenuMobile />
       </section>
-      <div>
+      <div className='w-full'>
         <div className='mt-4'>
           <h2 className='text-2xl font-bold mb-4'>{session?.user?.username?.toUpperCase()}</h2>
           <hr />

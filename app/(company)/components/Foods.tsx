@@ -10,7 +10,7 @@ interface Props {
 
 const Foods: FC<Props> = ({ foods }) => {
   return (
-    <div className='mt-10'>
+    <div className='mt-10 flex justify-center'>
       <table className=''>
         <thead>
           <tr>

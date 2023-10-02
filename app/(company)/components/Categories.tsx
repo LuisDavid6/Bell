@@ -6,7 +6,7 @@ interface Props {
 }
 const Categories: FC<Props> = ({ categories }) => {
   return (
-    <div className='mt-28 border-l-2 pl-3 min-w-[250px]'>
+    <div className='border-l-2 pl-3'>
       <div className='flex justify-between items-center mb-1'>
         <h2 className='font-bold text-lg'>Categorias</h2>
         <PlusIcon

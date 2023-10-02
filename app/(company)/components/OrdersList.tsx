@@ -16,7 +16,7 @@ const OrdersList: FC<Props> = ({ orders }) => {
 
   return (
     <div>
-      <div className='rounded-lg bg-bg2 dark:bg-bgDark p-3'>
+      <div className='rounded-lg bg-bg2 dark:bg-bgDark p-3 md:mx-2'>
         <div className='md:flex md:gap-8'>
           <h2 className='text-xl font-extrabold max-md:mb-5'>Pedidos día</h2>
           <section className='flex items-center gap-3 sm:gap-7 md:mt-8 max-sm:text-sm'>
@@ -41,7 +41,7 @@ const OrdersList: FC<Props> = ({ orders }) => {
             <Order order={order} key={order.id} />
           ))}
       </div>
-      <div className='rounded-lg bg-bg2 dark:bg-bgDark p-3 mt-20'>
+      <div className='rounded-lg bg-bg2 dark:bg-bgDark p-3 mt-20 md:mx-2'>
         <h2 className='text-xl font-extrabold max-md:mb-5'>Historial Pedidos</h2>
         <hr />
         {orders.map((order) => (
