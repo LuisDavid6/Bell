@@ -1,10 +1,10 @@
 import React from 'react'
-import Search from '../components/Search'
+import Search from './Search'
 import { getCompanyCategories, getFoodsByCompany } from '@/lib/queries'
 import { getSession } from '@/lib/getSession'
-import Foods from '../components/Foods'
-import Categories from '../components/Categories'
-import AddProductButton from '../components/AddProductButton'
+import Foods from './components/Foods'
+import Categories from './components/Categories'
+import AddProductButton from './components/AddProductButton'
 
 interface Props {
   searchParams: { name: string }

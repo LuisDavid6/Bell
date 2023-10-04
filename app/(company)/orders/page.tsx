@@ -1,7 +1,7 @@
 import { getSession } from '@/lib/getSession'
 import { getCompanyOrders } from '@/lib/queries'
 import React from 'react'
-import OrdersList from '../components/OrdersList'
+import OrdersList from './components/OrdersList'
 
 const Orders = async () => {
   const session = await getSession()

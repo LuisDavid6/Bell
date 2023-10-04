@@ -1,8 +1,8 @@
 import { ReactNode } from 'react'
 import { getSession } from '@/lib/getSession'
 import { redirect, notFound } from 'next/navigation'
-import Menu from '@/app/(company)/components/Menu'
-import MenuMobile from './components/MenuMobile'
+import Menu from '@/app/(company)/dashboard/components/Menu'
+import MenuMobile from './dashboard/components/MenuMobile'
 
 const layout = async ({ children }: { children: ReactNode }) => {
   const session = await getSession()

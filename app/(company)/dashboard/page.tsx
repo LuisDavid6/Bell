@@ -3,9 +3,9 @@ import { getRestaurantInfo, getOfferFoodsByCompany } from '@/lib/queries'
 import { convertPrice } from '@/pipes/convertPrice.pipe'
 import { PencilSquareIcon } from '@heroicons/react/24/outline'
 import React from 'react'
-import OfferFoods from '../components/OfferFoods'
-import OrdersHome from '../components/OrdersHome'
-import Comments from '../components/Comments'
+import OfferFoods from './components/OfferFoods'
+import OrdersHome from './components/OrdersHome'
+import Comments from './components/Comments'
 
 const Dashboard = async () => {
   const session = await getSession()
@@ -13,7 +13,7 @@ const Dashboard = async () => {
   const offerFoods = await getOfferFoodsByCompany(session?.user.id || '')
 
   return (
-    <div className='w-full flex flex-col justify-center items-center lg:flex-row gap-4 max-[500px]:-ml-10 pb-3'>
+    <div className='w-full flex flex-col justify-center lg:flex-row gap-4 max-[500px]:-ml-10 pb-3'>
       <div>
         <div className='border-2 border-title rounded-xl mt-10 py-4 pl-5 pr-8 relative'>
           <h3 className='text-lg font-bold mb-2'>Datos</h3>
