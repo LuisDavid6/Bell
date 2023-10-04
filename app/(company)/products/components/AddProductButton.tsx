@@ -15,7 +15,7 @@ const AddProductButton = () => {
 
   return (
     <>
-      {isOpen && <AddProductModal isOpen={isOpen} closeModal={closeModal} />}
+      {isOpen && <AddProductModal closeModal={closeModal} />}
       <button
         onClick={() => openModal()}
         className='bg-btn py-1 pl-2 pr-4 text-white rounded transition duration-500

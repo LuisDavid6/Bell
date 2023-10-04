@@ -81,3 +81,31 @@ export enum OrderStatus {
   Shipping = 'shipping',
   Received = 'received',
 }
+
+export interface Company {
+  id: string
+  name: string
+  email: string
+  image: string
+  address: string
+  tel: string
+  horary: string
+  shipping: number
+  rate: number
+  role: string
+  categories?: string[]
+  outstandings?: string[]
+  foods?: Food[]
+  orders?: Order[]
+  promoCodes?: PromoCode[]
+}
+
+export interface PromoCode {
+  id: string
+  code: string
+  discount: number
+  company?: Company
+  createAt: string
+  startDate: string
+  expireDate: string
+}

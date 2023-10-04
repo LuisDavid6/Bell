@@ -1,5 +1,5 @@
 import React from 'react'
-import Search from './Search'
+import Search from './components/Search'
 import { getCompanyCategories, getFoodsByCompany } from '@/lib/queries'
 import { getSession } from '@/lib/getSession'
 import Foods from './components/Foods'

@@ -1,11 +1,10 @@
 import { getSession } from '@/lib/getSession'
 import { getRestaurantInfo, getOfferFoodsByCompany } from '@/lib/queries'
 import { convertPrice } from '@/pipes/convertPrice.pipe'
-import { PencilSquareIcon } from '@heroicons/react/24/outline'
-import React from 'react'
 import OfferFoods from './components/OfferFoods'
 import OrdersHome from './components/OrdersHome'
 import Comments from './components/Comments'
+import UpdateInfoButton from './components/UpdateInfoButton'
 
 const Dashboard = async () => {
   const session = await getSession()
@@ -39,7 +38,9 @@ const Dashboard = async () => {
               <h6>envio:</h6>
               <h5 className='text-md font-medium ml-5 text-gray-600 dark:text-gray-400'>{convertPrice(company.shipping)}</h5>
             </section>
-            <PencilSquareIcon className='w-7 absolute right-0 top-0 mr-2 mt-2 cursor-pointer' />
+            <section className='absolute right-0 top-0'>
+              <UpdateInfoButton companyInfo={company} />
+            </section>
           </div>
         </div>
         <div className='mt-10'>
