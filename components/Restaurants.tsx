@@ -1,18 +1,18 @@
 import React from 'react'
-import { Restaurant } from '@/types'
+import { Company } from '@/types'
 import Image from 'next/image'
 import Link from 'next/link'
 import { RiEBike2Fill } from 'react-icons/ri'
 import { convertPrice } from '@/pipes/convertPrice.pipe'
 
 interface Props {
-  restaurants: Restaurant[]
+  restaurants: Company[]
 }
 
 const Restaurants: React.FC<Props> = ({ restaurants }) => {
   return (
     <div className='flex justify-center flex-wrap mx-1 gap-5'>
-      {restaurants.map((restaurant: Restaurant) => {
+      {restaurants.map((restaurant: Company) => {
         return (
           <Link href={`restaurant/${restaurant.id}`} key={restaurant.name}>
             <div

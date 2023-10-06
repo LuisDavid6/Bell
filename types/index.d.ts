@@ -1,17 +1,19 @@
-export interface Restaurant {
+export interface Company {
+  id: string
   name: string
   email: string
-  image?: string
+  image: string
   address: string
-  tel: string[]
+  tel: string
   horary: string
   shipping: number
-  active: boolean
   rate: number
   role: string
-  date: string
-  foods: []
-  id: string
+  categories?: string[]
+  outstandings?: string[]
+  foods?: Food[]
+  orders?: Order[]
+  promoCodes?: PromoCode[]
 }
 
 export interface Food {
@@ -20,6 +22,7 @@ export interface Food {
   description: string
   price: number
   offer: boolean
+  offerPrice: number
   img: string
   available: boolean
   category: string[]
