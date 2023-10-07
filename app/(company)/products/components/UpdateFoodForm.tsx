@@ -6,13 +6,37 @@ import { Formik } from 'formik'
 import Image from 'next/image'
 import * as Yup from 'yup'
 import { BaseSyntheticEvent, useState } from 'react'
+import useUpdateFood from '../../hooks/useUpdateFood'
+import { errorAlert, successAlert } from '@/lib/alerts'
 
 const UpdateFoodForm = ({ food }: { food: Food }) => {
   const [selectedFile, setSelectedFile] = useState(null)
+  const [loading, setLoading] = useState(false)
 
   const handleFileChange = (event: BaseSyntheticEvent) => {
     const file = event.target.files[0]
     setSelectedFile(file)
+  }
+
+  const uploadImage = async () => {
+    if (selectedFile) {
+      const formData = new FormData()
+
+      formData.append('file', selectedFile)
+      formData.append('upload_preset', 'ztqdlglo')
+      formData.append('folder', 'Bell/foods')
+
+      try {
+        const res = await fetch(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUD_NAME}/image/upload`, {
+          method: 'POST',
+          body: formData,
+        })
+        const file = await res.json()
+        return file.secure_url
+      } catch (error) {
+        // console.log(error)
+      }
+    }
   }
 
   return (
@@ -36,9 +60,26 @@ const UpdateFoodForm = ({ food }: { food: Food }) => {
           description: Yup.string().required('*Este campo es requerido'),
           offerPrice: Yup.number(),
         })}
-        onSubmit={async ({ name, category }) => {
-          const categories = category.split(',')
-          console.log('submit')
+        onSubmit={async ({ name, description, price, img, category, offer, offerPrice }) => {
+          setLoading(true)
+
+          const imageUrl = await uploadImage()
+
+          const response = await useUpdateFood(food.id, {
+            name,
+            price,
+            description,
+            offer,
+            offerPrice,
+            category: category.split(','),
+            img: imageUrl ?? img,
+          })
+
+          if (response === 'success') {
+            successAlert('Producto actualizado con éxito')
+          } else errorAlert('Un error ha ocurrido')
+
+          setLoading(false)
         }}
       >
         {({ values, errors, handleSubmit, handleChange }) => (
@@ -122,7 +163,11 @@ const UpdateFoodForm = ({ food }: { food: Food }) => {
               </section>
             </div>
 
-            <button type='submit' className='bg-btn hover:bg-btn2 w-3/6 md:w-2/6 place-self-center mt-10 py-2 rounded-lg text-white'>
+            <button
+              type='submit'
+              disabled={loading}
+              className='bg-btn hover:bg-btn2 w-3/6 md:w-2/6 place-self-center mt-10 py-2 rounded-lg text-white disabled:opacity-50 disabled:cursor-not-allowed '
+            >
               Guardar cambios
             </button>
           </form>

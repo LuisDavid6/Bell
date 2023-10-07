@@ -10,6 +10,7 @@ import useAddFood from '../../hooks/useAddFood'
 
 const AddProductForm = ({ closeModal }: { closeModal: () => void }) => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
+  const [loading, setLoading] = useState(false)
 
   const handleFileChange = (event: BaseSyntheticEvent) => {
     const file = event.target.files?.[0]
@@ -62,6 +63,8 @@ const AddProductForm = ({ closeModal }: { closeModal: () => void }) => {
           category: Yup.string().required('*Este campo es requerido'),
         })}
         onSubmit={async ({ name, price, description, offer, offerPrice, img, category }) => {
+          setLoading(true)
+
           const imageUrl = await uploadImage()
 
           if (imageUrl) {
@@ -72,6 +75,8 @@ const AddProductForm = ({ closeModal }: { closeModal: () => void }) => {
               closeModal()
             } else errorAlert('Un error ha ocurrido')
           } else errorAlert('Un error ha ocurrido')
+
+          setLoading(false)
         }}
       >
         {({ values, errors, handleSubmit, handleChange }) => (
@@ -134,7 +139,11 @@ const AddProductForm = ({ closeModal }: { closeModal: () => void }) => {
               )}
             </div>
 
-            <button type='submit' className='bg-btn hover:bg-btn2 w-3/6 md:w-2/6 place-self-center mt-10 py-2 rounded-lg text-white'>
+            <button
+              type='submit'
+              disabled={loading}
+              className='bg-btn hover:bg-btn2 w-3/6 md:w-2/6 place-self-center mt-10 py-2 rounded-lg text-white disabled:opacity-50 disabled:cursor-not-allowed'
+            >
               Guardar
             </button>
           </form>
