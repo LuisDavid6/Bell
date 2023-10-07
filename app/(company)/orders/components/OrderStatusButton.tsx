@@ -1,5 +1,5 @@
 'use client'
-import useUpdateOrderStatus from '@/hooks/useUpdateOrderStatus'
+import useUpdateOrderStatus from '@/app/(company)/hooks/useUpdateOrderStatus'
 import { errorAlert, successAlert } from '@/lib/alerts'
 import { FC } from 'react'
 
@@ -22,24 +22,15 @@ const OrderStatusButton: FC<Props> = ({ status, id, closeModal }) => {
   return (
     <>
       {status === 'pending' ? (
-        <button
-          onClick={update}
-          className='bg-amber-500 hover:bg-amber-600 w-3/6 md:w-2/6 place-self-center py-2 rounded-lg text-white'
-        >
+        <button onClick={update} className='bg-amber-500 hover:bg-amber-600 w-3/6 md:w-2/6 place-self-center py-2 rounded-lg text-white'>
           En preparación
         </button>
       ) : status === 'inProccess' ? (
-        <button
-          onClick={update}
-          className='bg-blue-500 hover:bg-blue-600 w-3/6 md:w-2/6 place-self-center py-2 rounded-lg text-white'
-        >
+        <button onClick={update} className='bg-blue-500 hover:bg-blue-600 w-3/6 md:w-2/6 place-self-center py-2 rounded-lg text-white'>
           Enviar
         </button>
       ) : status === 'shipping' ? (
-        <button
-          onClick={update}
-          className='bg-green-500 hover:bg-green-600 w-3/6 md:w-3/6 place-self-center py-2 rounded-lg text-white'
-        >
+        <button onClick={update} className='bg-green-500 hover:bg-green-600 w-3/6 md:w-3/6 place-self-center py-2 rounded-lg text-white'>
           Confirmar entrega
         </button>
       ) : null}

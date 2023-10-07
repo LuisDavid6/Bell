@@ -3,6 +3,8 @@ import Input from '@/components/Input'
 import { Company } from '@/types'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
+import useUpdateInfo from '../../hooks/useUpdateInfo'
+import { errorAlert, successAlert } from '@/lib/alerts'
 
 const UpdateInfoForm = ({ company }: { company: Company }) => {
   return (
@@ -13,7 +15,6 @@ const UpdateInfoForm = ({ company }: { company: Company }) => {
       <Formik
         initialValues={{
           name: company.name,
-          email: company.email,
           tel: company.tel,
           address: company.address,
           horary: company.horary,
@@ -21,14 +22,16 @@ const UpdateInfoForm = ({ company }: { company: Company }) => {
         }}
         validationSchema={Yup.object({
           name: Yup.string().required('*Este campo es requerido'),
-          email: Yup.string().required('*Este campo es requerido').email('*Correo inválido'),
           tel: Yup.number().required('*Este campo es requerido'),
           address: Yup.string().required('*Este campo es requerido'),
           horary: Yup.string().required('*Este campo es requerido'),
           shipping: Yup.number().required('*Este campo es requerido'),
         })}
-        onSubmit={async ({ name, email, tel, address, horary, shipping }) => {
-          console.log('submit')
+        onSubmit={async ({ name, tel, address, horary, shipping }) => {
+          const response = await useUpdateInfo(company.id, { name, tel, horary, address, shipping })
+
+          if (response === 'success') successAlert('Datos actualizados con éxito')
+          else errorAlert('Un error ha ocurrido')
         }}
       >
         {({ values, errors, handleSubmit, handleChange }) => (
@@ -37,11 +40,6 @@ const UpdateInfoForm = ({ company }: { company: Company }) => {
               <section>
                 <Input id='name' label='Nombre' value={values.name} type='text' onChange={handleChange} register />
                 <span className='text-xs font-semibold text-red-600'>{errors.name}</span>
-              </section>
-
-              <section>
-                <Input id='email' label='Email' value={values.email} type='text' onChange={handleChange} register />
-                <span className='text-xs font-semibold text-red-600'>{errors.email}</span>
               </section>
 
               <section>

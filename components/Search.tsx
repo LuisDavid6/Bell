@@ -17,7 +17,7 @@ const Search = () => {
       <MagnifyingGlassIcon className='absolute left-0 bottom-2 ml-2 w-5' />
       <form onSubmit={handleSearch}>
         <input
-          className='rounded-md bg-transparent placeholder-black dark:placeholder-gray-300 w-full border-2 border-btn focus:outline-btn pl-8 pr-16 py-1'
+          className='rounded-md bg-transparent placeholder-black dark:placeholder-gray-300 w-full border-2 border-btn focus:outline-none pl-8 pr-16 py-1'
           placeholder='buscar...'
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearch(e.target.value)}
         />
