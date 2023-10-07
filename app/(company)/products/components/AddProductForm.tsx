@@ -1,17 +1,43 @@
 'use client'
 import Input from '@/components/Input'
+import { errorAlert, successAlert } from '@/lib/alerts'
 import { ArrowUpTrayIcon } from '@heroicons/react/24/solid'
 import { Formik } from 'formik'
 import Image from 'next/image'
 import { BaseSyntheticEvent, useState } from 'react'
 import * as Yup from 'yup'
+import useAddFood from '../../hooks/useAddFood'
 
-const AddProductForm = () => {
-  const [selectedFile, setSelectedFile] = useState(null)
+const AddProductForm = ({ closeModal }: { closeModal: () => void }) => {
+  const [selectedFile, setSelectedFile] = useState<File | null>(null)
 
   const handleFileChange = (event: BaseSyntheticEvent) => {
-    const file = event.target.files[0]
-    setSelectedFile(file)
+    const file = event.target.files?.[0]
+
+    if (file && file.type.startsWith('image/')) {
+      setSelectedFile(file)
+    }
+  }
+
+  const uploadImage = async () => {
+    if (selectedFile) {
+      const formData = new FormData()
+
+      formData.append('file', selectedFile)
+      formData.append('upload_preset', 'ztqdlglo')
+      formData.append('folder', 'Bell/foods')
+
+      try {
+        const res = await fetch(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUD_NAME}/image/upload`, {
+          method: 'POST',
+          body: formData,
+        })
+        const file = await res.json()
+        return file.secure_url
+      } catch (error) {
+        // console.log(error)
+      }
+    }
   }
 
   return (
@@ -33,11 +59,19 @@ const AddProductForm = () => {
           name: Yup.string().required('*Este campo es requerido'),
           description: Yup.string().required('*Este campo es requerido'),
           price: Yup.number().required('*Este campo es requerido').min(1000, '*El valor debe ser mayor'),
-          img: Yup.string().required('*Este campo es requerido'),
           category: Yup.string().required('*Este campo es requerido'),
         })}
-        onSubmit={async ({ name, price, description, offer, img, category }) => {
-          console.log(offer)
+        onSubmit={async ({ name, price, description, offer, offerPrice, img, category }) => {
+          const imageUrl = await uploadImage()
+
+          if (imageUrl) {
+            const response = await useAddFood({ name, price, description, offer, offerPrice, category: category.split(','), img: imageUrl })
+
+            if (response === 'success') {
+              successAlert('Producto agregado con éxito')
+              closeModal()
+            } else errorAlert('Un error ha ocurrido')
+          } else errorAlert('Un error ha ocurrido')
         }}
       >
         {({ values, errors, handleSubmit, handleChange }) => (

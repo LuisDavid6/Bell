@@ -14,7 +14,7 @@ const AddProductModal: FC<Props> = ({ closeModal }) => {
         <div onClick={() => closeModal()} className='absolute top-2 right-2 rounded-full p-2 bg-slate-100 dark:bg-gray-400 cursor-pointer'>
           <XMarkIcon className='text-black w-6' />
         </div>
-        <AddProductForm />
+        <AddProductForm closeModal={closeModal} />
       </div>
     </div>
   )

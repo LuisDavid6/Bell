@@ -31,12 +31,12 @@ const Dashboard = async () => {
               <h5 className='text-md font-medium ml-5 text-gray-600 dark:text-gray-400'>{company.address}</h5>
             </section>
             <section className='text-lg font-bold'>
-              <h6>horarios:</h6>
-              <h5 className='text-md font-medium ml-5 text-gray-600 dark:text-gray-400'>{company.horary}</h5>
-            </section>
-            <section className='text-lg font-bold'>
               <h6>envio:</h6>
               <h5 className='text-md font-medium ml-5 text-gray-600 dark:text-gray-400'>{convertPrice(company.shipping)}</h5>
+            </section>
+            <section className='text-lg font-bold'>
+              <h6>horarios:</h6>
+              <h5 className='text-md font-medium ml-5 text-gray-600 dark:text-gray-400'>{company.horary}</h5>
             </section>
             <section className='absolute right-0 top-0'>
               <UpdateInfoButton companyInfo={company} />
