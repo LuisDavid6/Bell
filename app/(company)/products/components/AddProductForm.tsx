@@ -7,8 +7,11 @@ import Image from 'next/image'
 import { BaseSyntheticEvent, useState } from 'react'
 import * as Yup from 'yup'
 import useAddFood from '../../hooks/useAddFood'
+import { useRouter } from 'next/navigation'
 
 const AddProductForm = ({ closeModal }: { closeModal: () => void }) => {
+  const router = useRouter()
+
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
   const [loading, setLoading] = useState(false)
 
@@ -36,7 +39,7 @@ const AddProductForm = ({ closeModal }: { closeModal: () => void }) => {
         const file = await res.json()
         return file.secure_url
       } catch (error) {
-        // console.log(error)
+        errorAlert('Error al cargar la imagen')
       }
     }
   }
@@ -77,6 +80,7 @@ const AddProductForm = ({ closeModal }: { closeModal: () => void }) => {
           } else errorAlert('Un error ha ocurrido')
 
           setLoading(false)
+          router.refresh()
         }}
       >
         {({ values, errors, handleSubmit, handleChange }) => (

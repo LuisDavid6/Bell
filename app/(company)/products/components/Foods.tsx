@@ -1,9 +1,9 @@
 import { convertPrice } from '@/pipes/convertPrice.pipe'
 import { Food } from '@/types'
-import { TrashIcon } from '@heroicons/react/24/outline'
 import Image from 'next/image'
 import { FC } from 'react'
 import UpdateFoodButton from './UpdateFoodButton'
+import DeleteProductButton from './DeleteProductButton'
 
 interface Props {
   foods: Food[]
@@ -33,7 +33,7 @@ const Foods: FC<Props> = ({ foods }) => {
                   <UpdateFoodButton food={food} />
                 </td>
                 <td className='p-3 border-b-2 border-gray-300'>
-                  <TrashIcon className='w-5 cursor-pointer' />
+                  <DeleteProductButton id={food.id} />
                 </td>
               </tr>
             )
