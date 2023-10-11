@@ -8,8 +8,11 @@ import * as Yup from 'yup'
 import { BaseSyntheticEvent, useState } from 'react'
 import useUpdateFood from '../../hooks/useUpdateFood'
 import { errorAlert, successAlert } from '@/lib/alerts'
+import { useRouter } from 'next/navigation'
 
 const UpdateFoodForm = ({ food }: { food: Food }) => {
+  const router = useRouter()
+
   const [selectedFile, setSelectedFile] = useState(null)
   const [loading, setLoading] = useState(false)
 
@@ -34,7 +37,7 @@ const UpdateFoodForm = ({ food }: { food: Food }) => {
         const file = await res.json()
         return file.secure_url
       } catch (error) {
-        // console.log(error)
+        errorAlert('Error al cargar la imagen')
       }
     }
   }
@@ -77,6 +80,7 @@ const UpdateFoodForm = ({ food }: { food: Food }) => {
 
           if (response === 'success') {
             successAlert('Producto actualizado con éxito')
+            router.refresh()
           } else errorAlert('Un error ha ocurrido')
 
           setLoading(false)

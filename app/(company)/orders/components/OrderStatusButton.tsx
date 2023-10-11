@@ -2,6 +2,7 @@
 import useUpdateOrderStatus from '@/app/(company)/hooks/useUpdateOrderStatus'
 import { errorAlert, successAlert } from '@/lib/alerts'
 import { FC } from 'react'
+import { useRouter } from 'next/navigation'
 
 interface Props {
   status: string
@@ -10,6 +11,8 @@ interface Props {
 }
 
 const OrderStatusButton: FC<Props> = ({ status, id, closeModal }) => {
+  const router = useRouter()
+
   const update = async () => {
     const response = await useUpdateOrderStatus(id)
 
@@ -17,7 +20,7 @@ const OrderStatusButton: FC<Props> = ({ status, id, closeModal }) => {
     else errorAlert('Un error ha ocurrido')
 
     closeModal()
-    window.location.reload()
+    router.refresh()
   }
   return (
     <>

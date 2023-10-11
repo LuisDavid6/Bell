@@ -34,7 +34,7 @@ const Home = async () => {
       </div>
 
       <Image
-        src={'https://res.cloudinary.com/dnc21abpp/image/upload/v1695438505/Bell/promo_v0ijfx.png'}
+        src={'https://res.cloudinary.com/dnc21abpp/image/upload/v1695485381/Bell/banner_promo_u8dqkx.png'}
         alt=' image'
         width='0'
         height='0'

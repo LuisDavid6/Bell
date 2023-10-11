@@ -9,8 +9,8 @@ export const successAlert = (msj: string) => {
     closeOnClick: true,
     pauseOnHover: true,
     draggable: true,
-    theme: 'light',
-    style: { backgroundColor: '#fff2e5' },
+    theme: localStorage.getItem('theme') === 'light' ? 'light' : 'dark',
+    style: { backgroundColor: localStorage.getItem('theme') === 'light' ? '#fff2e5' : '#4C4A4A' },
   })
 }
 
@@ -22,7 +22,7 @@ export const errorAlert = (msj: string) => {
     closeOnClick: true,
     pauseOnHover: true,
     draggable: true,
-    theme: 'light',
-    style: { backgroundColor: '#fff2e5' },
+    theme: localStorage.getItem('theme') === 'light' ? 'light' : 'dark',
+    style: { backgroundColor: localStorage.getItem('theme') === 'light' ? '#fff2e5' : '#4C4A4A' },
   })
 }
