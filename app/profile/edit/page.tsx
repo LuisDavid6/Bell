@@ -1,7 +1,7 @@
 import React from 'react'
 import { getUserByEmail } from '@/lib/queries'
 import { getSession } from '@/lib/getSession'
-import EditUser from '../components/EditUser'
+import EditUser from './components/EditUser'
 
 const Edit = async () => {
   const session = await getSession()

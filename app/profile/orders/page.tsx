@@ -1,6 +1,6 @@
 import { getSession } from '@/lib/getSession'
 import { getUserOrders } from '@/lib/queries'
-import OrdersComponent from '../components/Orders'
+import OrdersComponent from './components/Orders'
 import { Order } from '@/types'
 
 const Orders = async () => {
