@@ -9,9 +9,9 @@ export interface Company {
   shipping: number
   rate: number
   role: string
-  categories?: string[]
+  categories: string[]
   outstandings?: string[]
-  foods?: Food[]
+  foods: Food[]
   orders?: Order[]
   promoCodes?: PromoCode[]
 }
