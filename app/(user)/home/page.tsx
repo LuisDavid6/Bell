@@ -51,7 +51,7 @@ const Home = async () => {
         </div>
       </div>
       <div className='w-full mt-3 py-5'>
-        <Link href=''>
+        <Link href='foods'>
           <h5 className='text-title text-center font-bold text-lg underline cursor-pointer'>Ver más ...</h5>
         </Link>
       </div>
