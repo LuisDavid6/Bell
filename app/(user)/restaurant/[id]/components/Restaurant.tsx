@@ -41,6 +41,7 @@ const Restaurant = ({ restaurant }: { restaurant: Company }) => {
           <ul className='max-sm:flex max-sm:gap-6 overflow-x-auto '>
             {restaurant.categories.map((category: string) => (
               <li
+                key={category}
                 className={`${categoryFilter === category && 'bg-title p-2 rounded-md'} whitespace-nowrap my-5 cursor-pointer underline-offset-1`}
                 onClick={() => {
                   filterByCategory(category)

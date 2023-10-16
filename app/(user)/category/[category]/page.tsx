@@ -14,14 +14,10 @@ const Category = async ({ params: { category } }: Props) => {
   return (
     <div className='pb-5'>
       <Categories categories={categories} />
-      <h2 className='text-title text-xl font-bold w-full text-center'>
-        {category.replaceAll('%20', ' ')}
-      </h2>
+      <h2 className='text-title text-xl font-bold w-full text-center'>{category.replaceAll('%20', ' ')}</h2>
 
       {foods.length < 1 ? (
-        <h1 className='text-center text-title text-xl font-bold mt-10'>
-          ⚠️ No se encontraron resultados...
-        </h1>
+        <h1 className='text-center text-title text-xl font-bold mt-10'>⚠️ No se encontraron resultados...</h1>
       ) : (
         <div className='grid grid-cols-3 gap-3 max-sm:grid-cols-1 max-lg:grid-cols-2 mx-3 w-fit'>
           <Foods foods={foods} />
