@@ -18,11 +18,16 @@ interface Props {
 }
 const EditUser: FC<Props> = ({ info: { id, username, email, tel, address, avatar } }) => {
   const [user, setUser] = useState({ username, tel, address, avatar })
+  const [loading, setLoading] = useState(false)
 
   const handleSave = async () => {
+    setLoading(true)
+
     const response = await useUpdateUser(id, user)
     if (response === 'success') successAlert('Datos actualizados con éxito')
     else errorAlert('Un error ha ocurrido')
+
+    setLoading(false)
   }
 
   return (
@@ -65,7 +70,11 @@ const EditUser: FC<Props> = ({ info: { id, username, email, tel, address, avatar
             onChange={(e: ChangeEvent<HTMLInputElement>) => setUser({ ...user, address: e.target.value })}
           />
         </section>
-        <button onClick={handleSave} className='bg-btn hover:bg-btn2 w-3/6 place-self-center mt-10 py-2 rounded-lg text-white'>
+        <button
+          onClick={handleSave}
+          disabled={loading}
+          className='bg-btn hover:bg-btn2 w-3/6 place-self-center mt-10 py-2 rounded-lg text-white disabled:opacity-50 disabled:cursor-not-allowed'
+        >
           Guardar cambios
         </button>
       </div>

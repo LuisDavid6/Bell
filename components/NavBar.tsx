@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import React from 'react'
+import { FC } from 'react'
 import LogOutButton from '@/components/LogoutButton'
 import Cart from '@/components/Cart'
 import Search from '@/components/Search'
@@ -11,7 +11,7 @@ interface Props {
   email: string
 }
 
-const NavBar: React.FC<Props> = ({ email }) => {
+const NavBar: FC<Props> = ({ email }) => {
   return (
     <div className='bg-bg dark:bg-bgDark px-4 py-4'>
       <div className='flex gap-5 justify-between items-center'>

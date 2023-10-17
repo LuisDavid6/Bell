@@ -5,7 +5,9 @@ interface Restaurant {
   email: string
   password: string
   address: string
-  tel: string[]
+  tel: string
+  horary: string
+  shipping: number
 }
 
 const URL = process.env.NEXT_PUBLIC_URL

@@ -5,9 +5,13 @@ import { Formik } from 'formik'
 import * as Yup from 'yup'
 import { useRouter } from 'next/navigation'
 import { signIn } from 'next-auth/react'
+import { useState } from 'react'
+import { errorAlert } from '@/lib/alerts'
 
 const UserRegister = () => {
   const router = useRouter()
+
+  const [loading, setLoading] = useState(false)
 
   return (
     <div>
@@ -35,15 +39,21 @@ const UserRegister = () => {
           tel: Yup.number().typeError('*Solo puede contener números').required('*Este campo es requerido'),
         })}
         onSubmit={async ({ username, email, password, address, tel }) => {
+          setLoading(true)
+
           const register = await useUserRegister({
             username,
             email,
             password,
             address,
-            tel: tel.toString(),
+            tel: tel,
           })
 
           if (register?.username) router.push('/login')
+          else {
+            errorAlert('Un error ha ocurrido')
+            setLoading(false)
+          }
         }}
       >
         {({ values, errors, handleSubmit, handleChange }) => (
@@ -81,7 +91,11 @@ const UserRegister = () => {
                 <span className='text-xs font-semibold text-red-600'>{errors.tel}</span>
               </section>
             </div>
-            <button type='submit' className='bg-btn hover:bg-btn2 w-3/6 md:w-2/6 place-self-center mt-10 py-2 rounded-lg text-white'>
+            <button
+              type='submit'
+              disabled={loading}
+              className='bg-btn hover:bg-btn2 w-3/6 md:w-2/6 place-self-center mt-10 py-2 rounded-lg text-white disabled:opacity-50 disabled:cursor-not-allowed'
+            >
               Crear cuenta
             </button>
             <button

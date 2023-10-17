@@ -5,7 +5,7 @@ import { TrashIcon } from '@heroicons/react/24/outline'
 import { Food } from '@/types'
 import Image from 'next/image'
 import { convertPrice } from '@/pipes/convertPrice.pipe'
-import AddToCart from '@/components/AddToCart'
+import AddToCartButton from '@/components/AddToCartButton'
 
 interface Props {
   isOpen: boolean
@@ -73,7 +73,7 @@ const FoodModal: React.FC<Props> = ({ isOpen, closeModal, data }) => {
                   <PlusSmallIcon className='w-6 cursor-pointer' onClick={() => handleCant(1)} />
                 </div>
                 <h1 className='p-2 text-lg font-extrabold'>{convertPrice(total)}</h1>
-                <AddToCart product={{ id: data.id, cant }} closeModal={closeModal} />
+                <AddToCartButton product={{ id: data.id, cant }} closeModal={closeModal} />
               </div>
             </div>
           </div>

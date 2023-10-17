@@ -1,4 +1,5 @@
 'use client'
+
 import React from 'react'
 import Input from '@/components//Input'
 import { useState } from 'react'
@@ -12,8 +13,11 @@ const LoginForm = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState({ status: false, message: '' })
+  const [loading, setLoading] = useState(false)
 
   const login = async () => {
+    setLoading(true)
+
     const res = await signIn('credentials', {
       email,
       password,
@@ -23,10 +27,12 @@ const LoginForm = () => {
 
     if (res?.error) {
       setError({ status: true, message: res.error })
+      setLoading(false)
       return
     }
 
-    router.push('/')
+    router.replace('/')
+    router.refresh()
   }
 
   return (
@@ -46,15 +52,15 @@ const LoginForm = () => {
         />
       </div>
       <button
-        className='bg-btn py-2 px-4 text-white rounded-full transition duration-500
-                ease-in-out hover:scale-110 hover:bg-btn2 p-2 mt-5 w-9/12'
+        className='bg-btn py-2 px-4 text-white rounded-full transition duration-500 ease-in-out hover:scale-110 hover:bg-btn2 p-2 mt-5 w-9/12 disabled:opacity-50 disabled:cursor-not-allowed'
+        disabled={loading}
         onClick={login}
       >
         Ingresar
       </button>
+
       <button
-        className='bg-black py-2 px-4 text-white rounded-full transition duration-500
-                ease-in-out hover:scale-110 hover:bg-stone-800 p-2 mt-5 w-9/12'
+        className='bg-black py-2 px-4 text-white rounded-full transition duration-500 ease-in-out hover:scale-110 hover:bg-stone-800 p-2 mt-5 w-9/12'
         onClick={() => signIn('google')}
       >
         Ingresa con Google

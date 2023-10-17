@@ -4,9 +4,13 @@ import { Formik } from 'formik'
 import * as Yup from 'yup'
 import { useRouter } from 'next/navigation'
 import useRestaurantRegister from '@/hooks/useRestaurantRegister'
+import { useState } from 'react'
+import { errorAlert } from '@/lib/alerts'
 
 const UserRegister = () => {
   const router = useRouter()
+
+  const [loading, setLoading] = useState(false)
 
   return (
     <div>
@@ -22,6 +26,8 @@ const UserRegister = () => {
           confirmPaswword: '',
           address: '',
           tel: '',
+          horary: '',
+          shipping: 0,
         }}
         validationSchema={Yup.object({
           name: Yup.string().required('*Este campo es requerido'),
@@ -32,17 +38,27 @@ const UserRegister = () => {
             .oneOf([Yup.ref('password')], 'Debe coincidir con la contraseña'),
           address: Yup.string().required('*Este campo es requerido'),
           tel: Yup.string().required('*Este campo es requerido'),
+          horary: Yup.string().required('*Este campo es requerido'),
+          shipping: Yup.number().required('*Este campo es requerido'),
         })}
-        onSubmit={async ({ name, email, password, address, tel }) => {
+        onSubmit={async ({ name, email, password, address, tel, horary, shipping }) => {
+          setLoading(true)
+
           const register = await useRestaurantRegister({
             name,
             email,
             password,
             address,
-            tel: [tel.toString()],
+            tel,
+            horary,
+            shipping,
           })
 
           if (register === 'success') router.push('/login')
+          else {
+            errorAlert('Un error ha ocurrido')
+            setLoading(false)
+          }
         }}
       >
         {({ values, errors, handleSubmit, handleChange }) => (
@@ -79,8 +95,20 @@ const UserRegister = () => {
                 <Input id='tel' label='teléfono' value={values.tel} type='number' onChange={handleChange} register />
                 <span className='text-xs font-semibold text-red-600'>{errors.tel}</span>
               </section>
+              <section>
+                <Input id='horary' label='Horario de atención' value={values.horary} type='text' onChange={handleChange} register />
+                <span className='text-xs font-semibold text-red-600'>{errors.horary}</span>
+              </section>
+              <section>
+                <Input id='shipping' label='Valor domicilio' value={values.shipping} type='number' onChange={handleChange} register />
+                <span className='text-xs font-semibold text-red-600'>{errors.shipping}</span>
+              </section>
             </div>
-            <button type='submit' className='bg-btn hover:bg-btn2 w-3/6 md:w-2/6 place-self-center mt-10 py-2 rounded-lg text-white'>
+            <button
+              type='submit'
+              disabled={loading}
+              className='bg-btn hover:bg-btn2 w-3/6 md:w-2/6 place-self-center mt-10 py-2 rounded-lg text-white disabled:opacity-50 disabled:cursor-not-allowed'
+            >
               Registrar restaurante
             </button>
           </form>
