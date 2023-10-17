@@ -18,7 +18,7 @@ const Register = async ({ searchParams: { company } }: Props) => {
   }
 
   return (
-    <div className='w-full flex flex-col items-center justify-center'>
+    <div className='w-full min-h-screen flex flex-col items-center justify-center'>
       <Link href='/home'>
         <Logo width={250} height={100} />
       </Link>

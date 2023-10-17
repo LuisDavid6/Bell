@@ -1,12 +1,19 @@
 'use client'
+
 import Input from '@/components/Input'
 import { Company } from '@/types'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
 import useUpdateInfo from '../../hooks/useUpdateInfo'
 import { errorAlert, successAlert } from '@/lib/alerts'
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 const UpdateInfoForm = ({ company }: { company: Company }) => {
+  const [loading, setLoading] = useState(false)
+
+  const router = useRouter()
+
   return (
     <div>
       <div className='bg-bg2 dark:bg-bgDark p-3 w-full my-5 rounded-lg'>
@@ -28,10 +35,16 @@ const UpdateInfoForm = ({ company }: { company: Company }) => {
           shipping: Yup.number().required('*Este campo es requerido'),
         })}
         onSubmit={async ({ name, tel, address, horary, shipping }) => {
+          setLoading(true)
+
           const response = await useUpdateInfo(company.id, { name, tel, horary, address, shipping })
 
-          if (response === 'success') successAlert('Datos actualizados con éxito')
-          else errorAlert('Un error ha ocurrido')
+          if (response === 'success') {
+            successAlert('Datos actualizados con éxito')
+            router.refresh()
+          } else errorAlert('Un error ha ocurrido')
+
+          setLoading(false)
         }}
       >
         {({ values, errors, handleSubmit, handleChange }) => (
@@ -53,7 +66,7 @@ const UpdateInfoForm = ({ company }: { company: Company }) => {
               </section>
 
               <section>
-                <Input id='horary' label='Horario' value={values.horary} type='text' onChange={handleChange} register />
+                <Input id='horary' label='Horario de atención' value={values.horary} type='text' onChange={handleChange} register />
                 <span className='text-xs font-semibold text-red-600'>{errors.horary}</span>
               </section>
 
@@ -62,7 +75,11 @@ const UpdateInfoForm = ({ company }: { company: Company }) => {
                 <span className='text-xs font-semibold text-red-600'>{errors.shipping}</span>
               </section>
             </div>
-            <button type='submit' className='bg-btn hover:bg-btn2 w-3/6 md:w-2/6 place-self-center mt-10 py-2 rounded-lg text-white'>
+            <button
+              type='submit'
+              disabled={loading}
+              className='bg-btn hover:bg-btn2 w-3/6 md:w-2/6 place-self-center mt-10 py-2 rounded-lg text-white disabled:opacity-50 disabled:cursor-not-allowed'
+            >
               Guardar cambios
             </button>
           </form>

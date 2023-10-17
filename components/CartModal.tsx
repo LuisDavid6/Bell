@@ -1,4 +1,5 @@
 'use client'
+
 import useAddToCart from '@/hooks/useAddToCart'
 import useGetCart from '@/hooks/useGetCart'
 import useNewOrder from '@/hooks/useNewOrder'
@@ -16,8 +17,11 @@ interface Props {
 }
 
 const CartModal: React.FC<Props> = ({ isOpen, closeModal, email }) => {
-  const [isVisible, setIsVisible] = useState<boolean>(!!isOpen)
   const { data: cart, mutate } = useGetCart(email)
+
+  const [isVisible, setIsVisible] = useState<boolean>(!!isOpen)
+  const [loading, setLoading] = useState(false)
+  const [loadingButton, setLoadingButton] = useState(false)
 
   useEffect(() => {
     setIsVisible(!!isOpen)
@@ -31,16 +35,22 @@ const CartModal: React.FC<Props> = ({ isOpen, closeModal, email }) => {
   }
 
   const handleCant = async (cant: number, foodId: string) => {
+    setLoading(true)
+
     await useAddToCart({
       foodId,
       cant,
       userId: cart.user,
     })
+
     mutate()
+    setLoading(false)
   }
 
   const confirmOrder = async () => {
     try {
+      setLoadingButton(true)
+
       const response = await useNewOrder(cart.user)
       mutate()
 
@@ -49,6 +59,8 @@ const CartModal: React.FC<Props> = ({ isOpen, closeModal, email }) => {
     } catch (error) {
       errorAlert('un error ha ocurrido')
     }
+
+    setLoadingButton(false)
   }
 
   if (!isOpen) return null
@@ -59,7 +71,7 @@ const CartModal: React.FC<Props> = ({ isOpen, closeModal, email }) => {
       <div
         className={`${
           isVisible ? '' : 'translate-x-full'
-        } max-w-md min-w-[280px] md:min-w-[350px] min-h-screen h-fit bg-white dark:bg-gradient-to-r dark:from-black dark:to-neutral-900 dark:text-white transform duration-300 drop-shadow-md`}
+        } max-w-md min-w-[290px] md:min-w-[350px] min-h-screen h-fit bg-white dark:bg-gradient-to-r dark:from-black dark:to-neutral-900 dark:text-white transform duration-300 drop-shadow-md`}
       >
         {cart?.company ? (
           <div className='flex flex-col mx-2 mt-1 pb-4 gap-4 items-center'>
@@ -71,13 +83,19 @@ const CartModal: React.FC<Props> = ({ isOpen, closeModal, email }) => {
                     <h5 className='text-left'>{food.name}</h5>
                     <h5 className='text-left'>{convertPrice(food.price)}</h5>
                     <div className='border-2 p-1 flex place-self-center gap-5 w-fit'>
-                      {cant > 1 ? (
-                        <MinusSmallIcon className='w-6 cursor-pointer' onClick={() => handleCant(-1, food.id)} />
+                      {!loading ? (
+                        <>
+                          {cant > 1 ? (
+                            <MinusSmallIcon className='w-6 cursor-pointer' onClick={() => handleCant(-1, food.id)} />
+                          ) : (
+                            <TrashIcon className='w-5 cursor-pointer' onClick={() => handleCant(-1, food.id)} />
+                          )}
+                          <h1 className='font-extrabold'>{cant}</h1>
+                          <PlusSmallIcon className='w-5 cursor-pointer' onClick={() => handleCant(1, food.id)} />
+                        </>
                       ) : (
-                        <TrashIcon className='w-5 cursor-pointer' onClick={() => handleCant(-1, food.id)} />
+                        <h1 className='mx-1'>Cargando...</h1>
                       )}
-                      <h1 className='font-extrabold'>{cant}</h1>
-                      <PlusSmallIcon className='w-5 cursor-pointer' onClick={() => handleCant(1, food.id)} />
                     </div>
                   </div>
                   <Image src={food.img} alt={food.name} width={130} height={100} />
@@ -89,8 +107,9 @@ const CartModal: React.FC<Props> = ({ isOpen, closeModal, email }) => {
             <h1 className='font-bold text-title text-xl mb-5'>{convertPrice(cart.total + cart.company.shipping)}</h1>
             <button
               onClick={confirmOrder}
+              disabled={loadingButton}
               className='bg-btn py-2 px-4 text-white rounded-full transition duration-500
-                ease-in-out hover:scale-110 hover:bg-btn2'
+                ease-in-out hover:scale-110 hover:bg-btn2 disabled:opacity-50 disabled:cursor-not-allowed'
             >
               Realizar pedido
             </button>

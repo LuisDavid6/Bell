@@ -13,7 +13,7 @@ const Login = async () => {
   }
 
   return (
-    <div className='w-full flex flex-col justify-center items-center gap-8'>
+    <div className='w-full min-h-screen flex flex-col justify-center items-center gap-8'>
       <Link href='/home'>
         <Logo width={300} height={100} />
       </Link>

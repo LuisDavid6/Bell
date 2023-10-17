@@ -18,7 +18,7 @@ const Orders = ({ orders }: { orders: Order[] }) => {
   return (
     <div className='ml-5 justify-center gap-10 flex max-md:flex-col'>
       <div className='flex flex-col items-center'>
-        <h2 className='mb-5'>Pedidos en proceso</h2>
+        <h2 className='mb-5'>{orders.length > 0 ? 'Pedidos en proceso' : 'No hay pedidos en proceso'}</h2>
         {orders.length > 1 &&
           orders.map((order) => {
             return (

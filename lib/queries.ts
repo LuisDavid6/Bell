@@ -7,7 +7,7 @@ export const getRestaurants = () => {
 }
 
 export const getCategories = () => {
-  return fetch(`${URL}/categories`).then((data) => data.json())
+  return fetch(`${URL}/categories`, { cache: 'no-cache' }).then((data) => data.json())
 }
 
 export const getRestaurantById = async (id: string) => {
