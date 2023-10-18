@@ -73,7 +73,7 @@ const FoodModal: React.FC<Props> = ({ isOpen, closeModal, data }) => {
                   <PlusSmallIcon className='w-6 cursor-pointer' onClick={() => handleCant(1)} />
                 </div>
                 <h1 className='p-2 text-lg font-extrabold'>{convertPrice(total)}</h1>
-                <AddToCartButton product={{ id: data.id, cant }} closeModal={closeModal} />
+                <AddToCartButton product={{ id: data.id, cant, companyId: data.company }} closeModal={closeModal} />
               </div>
             </div>
           </div>
