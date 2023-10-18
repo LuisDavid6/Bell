@@ -28,13 +28,7 @@ const Restaurants: React.FC<Props> = ({ restaurants }) => {
                 style={{ objectFit: 'cover', width: '320px', height: '200px' }}
               />
               <h1 className='mb-2 text-lg text-center font-semibold italic'>{restaurant.name} </h1>
-              <div className='text-sm flex justify-between px-3'>
-                <span className=''> {restaurant.horary} </span>
-                <div className='flex items-center gap-2'>
-                  <RiEBike2Fill />
-                  <span className=''>{convertPrice(restaurant.shipping)}</span>
-                </div>
-              </div>
+              <h5 className='text-sm flex justify-center dark:text-gray-200'> {restaurant.horary} </h5>
               <div className='absolute right-0 top-0 flex items-center gap-2 bg-title rounded-md px-2 py-1 opacity-80'>
                 <RiEBike2Fill />
                 <span className='pr-1 font-bold'>{convertPrice(restaurant.shipping)}</span>

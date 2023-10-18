@@ -1,10 +1,12 @@
 'use client'
+
 import { FC, ChangeEvent, useState } from 'react'
 import Image from 'next/image'
 import { PencilIcon } from '@heroicons/react/24/solid'
 import Input from './Input'
 import useUpdateUser from '@/hooks/useUpdateUser'
 import { errorAlert, successAlert } from '@/lib/alerts'
+import { useRouter } from 'next/navigation'
 
 interface Props {
   info: {
@@ -17,6 +19,8 @@ interface Props {
   }
 }
 const EditUser: FC<Props> = ({ info: { id, username, email, tel, address, avatar } }) => {
+  const router = useRouter()
+
   const [user, setUser] = useState({ username, tel, address, avatar })
   const [loading, setLoading] = useState(false)
 
@@ -24,8 +28,10 @@ const EditUser: FC<Props> = ({ info: { id, username, email, tel, address, avatar
     setLoading(true)
 
     const response = await useUpdateUser(id, user)
-    if (response === 'success') successAlert('Datos actualizados con éxito')
-    else errorAlert('Un error ha ocurrido')
+    if (response === 'success') {
+      successAlert('Datos actualizados con éxito')
+      router.refresh()
+    } else errorAlert('Un error ha ocurrido')
 
     setLoading(false)
   }

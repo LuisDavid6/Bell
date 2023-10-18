@@ -1,11 +1,13 @@
 'use client'
-import { FaCartPlus } from 'react-icons/fa'
-import useStore from '@/lib/store'
-import useAddToCart from '@/hooks/useAddToCart'
-import { getUserByEmail } from '@/lib/queries'
-import { errorAlert, successAlert } from '@/lib/alerts'
-import { getSession } from 'next-auth/react'
+
 import { useState } from 'react'
+import useStore from '@/lib/store'
+import { errorAlert, successAlert } from '@/lib/alerts'
+import { getUserByEmail } from '@/lib/queries'
+import useAddToCart from '@/hooks/useAddToCart'
+import { loginAlert } from '@/components/LoginAlert'
+import { getSession } from 'next-auth/react'
+import { FaCartPlus } from 'react-icons/fa'
 
 interface Product {
   id: string
@@ -27,7 +29,7 @@ const AddToCartButton: React.FC<Props> = ({ product: { id, cant }, closeModal })
     setLoading(true)
     const session = await getSession()
 
-    if (!session?.user) return errorAlert('Debe iniciar sesión o registrarse primero')
+    if (!session?.user) return loginAlert()
 
     const response = await useAddToCart({
       userId: user?.id ?? '',

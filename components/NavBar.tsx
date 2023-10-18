@@ -35,18 +35,12 @@ const NavBar: FC<Props> = ({ email }) => {
           <div className='flex gap-2'>
             <ThemeSwitcher />
             <Link href='/login'>
-              <button
-                className='bg-btn py-2 px-4 text-white max-sm:text-sm rounded-full transition duration-500
-                ease-in-out hover:scale-110 hover:bg-btn2'
-              >
+              <button className='bg-btn py-2 px-4 text-white max-sm:text-sm rounded-full transition duration-500 ease-in-out hover:scale-110 hover:bg-btn2'>
                 Ingresar
               </button>
             </Link>
             <Link href='/register'>
-              <button
-                className='bg-btn py-2 px-4 text-white max-sm:text-sm rounded-full transition duration-500
-              ease-in-out hover:scale-110 hover:bg-btn2'
-              >
+              <button className='bg-btn py-2 px-4 text-white max-sm:text-sm rounded-full transition duration-500 ease-in-out hover:scale-110 hover:bg-btn2'>
                 Registrarse
               </button>
             </Link>

@@ -75,7 +75,7 @@ const Orders = ({ orders }: { orders: Order[] }) => {
           </div>
           <div>
             <section className='mt-5'>
-              <h2 className='text-gray-600 mb-4'>Comidas:</h2>
+              <h2 className='text-gray-600 mb-4 dark:text-gray-400'>Comidas:</h2>
               {orderInfo.foods.map(({ food, cant, total }: FoodCart) => {
                 return (
                   <div key={food.name} className='border-b-2 pb-2 mb-5 max-w-sm ml-5'>

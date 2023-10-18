@@ -21,7 +21,7 @@ export const getRestaurantInfo = async (id: string) => {
 }
 
 export const getAllFoods = async () => {
-  const response = await fetch(`${URL}/foods/all`)
+  const response = await fetch(`${URL}/foods/all`, { cache: 'no-cache' })
   return await response.json()
 }
 

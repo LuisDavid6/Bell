@@ -20,6 +20,7 @@ const useUpdateUser = async (userId: string, data: UserData) => {
         authorization: `Bearer ${session?.user.token}`,
       },
     })
+
     return response.data
   } catch (error) {
     return error
