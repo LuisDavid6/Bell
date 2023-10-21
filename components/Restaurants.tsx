@@ -21,7 +21,7 @@ const Restaurants: React.FC<Props> = ({ restaurants }) => {
             >
               <Image
                 className='rounded-t-lg'
-                src={restaurant.image || 'https://www.pequerecetas.com/wp-content/uploads/2013/07/hamburguesas-caseras-receta.jpg'}
+                src={restaurant.image}
                 alt={restaurant.name}
                 width={320}
                 height={200}

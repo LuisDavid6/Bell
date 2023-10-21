@@ -18,12 +18,7 @@ const Restaurant = ({ restaurant }: { restaurant: Company }) => {
     <div className='flex flex-col'>
       <div className='relative h-52 overflow-hidden sm:h-80 lg:h-96'>
         <section className='dark:opacity-60'>
-          <Image
-            src={restaurant.image || 'https://www.pequerecetas.com/wp-content/uploads/2013/07/hamburguesas-caseras-receta.jpg'}
-            alt='restaurant image'
-            fill
-            className='object-cover opacity-80'
-          />
+          <Image src={restaurant.image} alt='restaurant image' fill className='object-cover opacity-80' />
         </section>
         <h4 className='absolute left-0 bottom-0 bg-title dark:bg-black text-white dark:text-title dark:brightness-150 opacity-80 dark:bg-opacity-90 w-full drop-shadow-2xl shadow-white font-bold md:text-2xl px-3 py-2'>
           {restaurant.name?.toUpperCase()}
