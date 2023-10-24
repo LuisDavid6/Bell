@@ -1,6 +1,6 @@
 'use client'
 
-import { FC, ChangeEvent, useState } from 'react'
+import { FC, ChangeEvent, useState, BaseSyntheticEvent } from 'react'
 import Image from 'next/image'
 import { PencilIcon } from '@heroicons/react/24/solid'
 import Input from './Input'
@@ -22,12 +22,41 @@ const EditUser: FC<Props> = ({ info: { id, username, email, tel, address, avatar
   const router = useRouter()
 
   const [user, setUser] = useState({ username, tel, address, avatar })
+  const [selectedFile, setSelectedFile] = useState(null)
   const [loading, setLoading] = useState(false)
+
+  const handleFileChange = (event: BaseSyntheticEvent) => {
+    const file = event.target.files[0]
+    setSelectedFile(file)
+  }
+
+  const uploadImage = async () => {
+    if (selectedFile) {
+      const formData = new FormData()
+
+      formData.append('file', selectedFile)
+      formData.append('upload_preset', 'ztqdlglo')
+      formData.append('folder', 'Bell/avatars')
+
+      try {
+        const res = await fetch(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUD_NAME}/image/upload`, {
+          method: 'POST',
+          body: formData,
+        })
+        const file = await res.json()
+        return file.secure_url
+      } catch (error) {
+        errorAlert('Error al cargar la imagen')
+      }
+    }
+  }
 
   const handleSave = async () => {
     setLoading(true)
 
-    const response = await useUpdateUser(id, user)
+    const imageUrl = await uploadImage()
+
+    const response = await useUpdateUser(id, { ...user, avatar: imageUrl })
     if (response === 'success') {
       successAlert('Datos actualizados con éxito')
       router.refresh()
@@ -40,9 +69,20 @@ const EditUser: FC<Props> = ({ info: { id, username, email, tel, address, avatar
     <div className='flex flex-col px-2 justify-center items-center w-full gap-3'>
       <div className='flex gap-5 items-center justify-center mb-4 w-full'>
         <section className='relative'>
-          <Image src={avatar} alt='avatar de usuario' width={120} height={100} className='rounded-full' />
+          <Image
+            src={selectedFile ? URL.createObjectURL(selectedFile) : avatar}
+            alt='avatar de usuario'
+            width='0'
+            height='0'
+            sizes='100vw'
+            style={{ objectFit: 'cover', width: '120px', height: '120px' }}
+            className='w-full h-auto rounded-full object-cover'
+          />
           <div className='absolute bottom-0 right-1 bg-neutral-300 dark:bg-neutral-600 rounded-full p-2 cursor-pointer'>
-            <PencilIcon className='w-5' />
+            <label htmlFor='img' className='bg-gray-600 text-white rounded-md cursor-pointer'>
+              <PencilIcon className='text-white w-5' />
+            </label>
+            <input id='img' type='file' accept='image/*' className='hidden opacity-0, overflow-hidden absolute z-10' onChange={handleFileChange} />
           </div>
         </section>
         <div className='flex flex-col gap-1'>
