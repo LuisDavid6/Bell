@@ -10,7 +10,7 @@ export interface Company {
   rate: number
   role: string
   categories: string[]
-  outstandings?: string[]
+  outstandings: Food[]
   foods: Food[]
   orders?: Order[]
   promoCodes?: PromoCode[]

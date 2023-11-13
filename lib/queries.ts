@@ -40,6 +40,11 @@ export const getFoodsByCompany = async (id: string, name: string) => {
   return await response.json()
 }
 
+export const getCompanyOutstandings = async (id: string) => {
+  const response = await fetch(`${URL}/companies/outstandings/${id}`)
+  return await response.json()
+}
+
 export const getCompanyCategories = async (id: string) => {
   const response = await fetch(`${URL}/companies/categories/${id}`)
   return await response.json()

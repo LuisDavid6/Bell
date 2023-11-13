@@ -1,18 +1,14 @@
 import { convertPrice } from '@/pipes/convertPrice.pipe'
-import { Food } from '@/types'
-import { ArrowsRightLeftIcon } from '@heroicons/react/24/solid'
+import { Company } from '@/types'
 import Image from 'next/image'
-import { FC } from 'react'
+import ChangeOutstandingsButton from './ChangeOutstandingsButton'
 
-interface Props {
-  foods: Food[]
-}
-const OfferFoods: FC<Props> = ({ foods }) => {
+const Outstandings = ({ company }: { company: Company }) => {
   return (
     <div className='border-2 border-title rounded-xl p-4 relative'>
       <h3 className='text-lg font-bold mb-4'>Destacados</h3>
       <div className='flex gap-3 justify-evenly'>
-        {foods.map((food) => {
+        {company.outstandings.map((food) => {
           return (
             <div className='flex flex-col items-center gap-1'>
               <Image
@@ -29,9 +25,9 @@ const OfferFoods: FC<Props> = ({ foods }) => {
           )
         })}
       </div>
-      <ArrowsRightLeftIcon className='w-7 absolute right-0 top-0 mr-2 mt-2 cursor-pointer' />
+      <ChangeOutstandingsButton company={company} />
     </div>
   )
 }
 
-export default OfferFoods
+export default Outstandings

@@ -1,15 +1,14 @@
 import { getSession } from '@/lib/getSession'
-import { getRestaurantInfo, getOfferFoodsByCompany } from '@/lib/queries'
+import { getRestaurantById } from '@/lib/queries'
 import { convertPrice } from '@/pipes/convertPrice.pipe'
-import OfferFoods from './components/OfferFoods'
+import Outstandings from './components/Outstandings'
 import OrdersHome from './components/OrdersHome'
 import Comments from './components/Comments'
 import UpdateInfoButton from './components/UpdateInfoButton'
 
 const Dashboard = async () => {
   const session = await getSession()
-  const company = await getRestaurantInfo(session?.user.id || '')
-  const offerFoods = await getOfferFoodsByCompany(session?.user.id || '')
+  const company = await getRestaurantById(session?.user.id || '')
 
   return (
     <div className='w-full flex flex-col justify-center lg:flex-row gap-4 max-[500px]:-ml-10 pb-3'>
@@ -44,7 +43,7 @@ const Dashboard = async () => {
           </div>
         </div>
         <div className='mt-10'>
-          <OfferFoods foods={offerFoods.slice(0, 3)} />
+          <Outstandings company={company} />
         </div>
         <div className='mt-10 border-2 border-title rounded-xl p-4'>
           <OrdersHome />
