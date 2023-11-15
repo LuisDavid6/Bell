@@ -8,7 +8,7 @@ import Foods from '@/components/Foods'
 
 const Restaurant = ({ restaurant }: { restaurant: Company }) => {
   const [foods, setFoods] = useState(restaurant.foods)
-  const [categoryFilter, setCategoryFilter] = useState('')
+  const [categoryFilter, setCategoryFilter] = useState('All')
 
   const filterByCategory = (category: string) => {
     setFoods(restaurant.foods.filter((food) => food.category.includes(category)))
@@ -29,11 +29,21 @@ const Restaurant = ({ restaurant }: { restaurant: Company }) => {
         <h6> Dirección: {restaurant.address} </h6>
         <h6> Teléfono: {restaurant.tel} </h6>
         <h6> Horarios: {restaurant.horary} </h6>
-        <h6> Precio de envío: {convertPrice(restaurant.shipping)} </h6>
+        <h6> Precio de envío: {restaurant.shipping <= 0 ? 'Gratis' : convertPrice(restaurant.shipping)} </h6>
       </div>
       <div className='flex gap-6 max-sm:flex-col'>
         <div className='px-5 mt-4 h-fit'>
           <ul className='max-sm:flex max-sm:gap-6 overflow-x-auto '>
+            <li
+              key={'All'}
+              className={`${categoryFilter === 'All' && 'bg-title p-2 rounded-md'} whitespace-nowrap my-5 cursor-pointer underline-offset-1`}
+              onClick={() => {
+                setCategoryFilter('All')
+                setFoods(restaurant.foods)
+              }}
+            >
+              Todos
+            </li>
             {restaurant.categories.map((category: string) => (
               <li
                 key={category}
@@ -48,7 +58,7 @@ const Restaurant = ({ restaurant }: { restaurant: Company }) => {
             ))}
           </ul>
         </div>
-        <div className='grid grid-cols-2 gap-3 max-md:grid-cols-1 h-fit mx-2 mb-4'>
+        <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 h-fit mx-2 mb-4'>
           <Foods foods={foods} />
         </div>
       </div>

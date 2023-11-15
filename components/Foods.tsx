@@ -1,4 +1,5 @@
 'use client'
+
 import { Food } from '@/types'
 import Image from 'next/image'
 import { convertPrice } from '@/pipes/convertPrice.pipe'

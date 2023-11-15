@@ -6,6 +6,7 @@ import { Food } from '@/types'
 import Image from 'next/image'
 import { convertPrice } from '@/pipes/convertPrice.pipe'
 import AddToCartButton from '@/components/AddToCartButton'
+import Link from 'next/link'
 
 interface Props {
   isOpen: boolean
@@ -13,10 +14,10 @@ interface Props {
   data: Food
 }
 
-const FoodModal: React.FC<Props> = ({ isOpen, closeModal, data }) => {
+const FoodModal: React.FC<Props> = ({ isOpen, closeModal, data: food }) => {
   const [isVisible, setIsVisible] = useState<boolean>(!!isOpen)
   const [cant, setCant] = useState(1)
-  const [total, setTotal] = useState(data?.price)
+  const [total, setTotal] = useState(food?.price)
 
   useEffect(() => {
     setIsVisible(!!isOpen)
@@ -31,7 +32,7 @@ const FoodModal: React.FC<Props> = ({ isOpen, closeModal, data }) => {
 
   const handleCant = (value: number) => {
     setCant(cant + value)
-    setTotal(data?.price * (cant + value))
+    setTotal(food?.price * (cant + value))
   }
 
   if (!isOpen) return null
@@ -53,15 +54,24 @@ const FoodModal: React.FC<Props> = ({ isOpen, closeModal, data }) => {
 
             <Image
               className='rounded-lg object-cover'
-              src={data?.img}
-              alt={data?.name}
+              src={food?.img}
+              alt={food?.name}
               width={350}
               height={200}
               style={{ objectFit: 'cover', width: 'auto', height: 'auto' }}
             />
-            <div className='my-2 mx-1 flex flex-col justify-between gap-10'>
-              <h1 className='text-lg'>{data.name}</h1>
-              <h2> {convertPrice(data.price)}</h2>
+            <div className='my-2 mx-1 flex flex-col justify-between gap-5'>
+              {food?.company.id && (
+                <Link href={`restaurant/${food?.company.id}`}>
+                  <div className='w-full flex justify-end -mt-9'>
+                    <h1 className='text-md text-title font-bold italic text-right cursor-pointer bg-bg dark:bg-black opacity-90 px-4 pt-1 -mx-1 w-fit rounded-ss-2xl'>
+                      {food?.company.name}
+                    </h1>
+                  </div>
+                </Link>
+              )}
+              <h1 className='text-lg '>{food.name}</h1>
+              <h2> {convertPrice(food.price)}</h2>
               <div className='flex justify-between mb-2'>
                 <div className='border-2 p-2 flex gap-5'>
                   {cant > 1 ? (
@@ -73,7 +83,7 @@ const FoodModal: React.FC<Props> = ({ isOpen, closeModal, data }) => {
                   <PlusSmallIcon className='w-6 cursor-pointer' onClick={() => handleCant(1)} />
                 </div>
                 <h1 className='p-2 text-lg font-extrabold'>{convertPrice(total)}</h1>
-                <AddToCartButton product={{ id: data.id, cant, companyId: data.company }} closeModal={closeModal} />
+                <AddToCartButton product={{ id: food.id, cant, companyId: food.company.id }} closeModal={closeModal} />
               </div>
             </div>
           </div>

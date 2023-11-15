@@ -26,7 +26,7 @@ export interface Food {
   img: string
   available: boolean
   category: string[]
-  company: string
+  company: Company
 }
 
 export interface Category {
