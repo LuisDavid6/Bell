@@ -31,7 +31,7 @@ const Restaurants: React.FC<Props> = ({ restaurants }) => {
               <h5 className='text-sm flex justify-center dark:text-gray-200'> {restaurant.horary} </h5>
               <div className='absolute right-0 top-0 flex items-center gap-2 bg-title rounded-md px-2 py-1 opacity-80'>
                 <RiEBike2Fill />
-                <span className='pr-1 font-bold'>{convertPrice(restaurant.shipping)}</span>
+                <span className='pr-1 font-bold'>{restaurant.shipping <= 0 ? 'Gratis' : convertPrice(restaurant.shipping)}</span>
               </div>
             </div>
           </Link>

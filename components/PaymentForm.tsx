@@ -38,7 +38,7 @@ const PaymentForm = ({ user }: { user: string }) => {
         const response = await useNewOrder(user)
 
         if (response === 'success') {
-          successAlert('pedido realizado')
+          successAlert('pedido realizado con éxito')
           router.push('/profile/orders')
         } else errorAlert('un error ha ocurrido')
       } catch (error) {

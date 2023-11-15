@@ -67,9 +67,9 @@ const AddToCartButton: React.FC<Props> = ({ product: { id, cant, companyId }, cl
 
     const session = await getSession()
 
-    const currentUser = await getUserByEmail(session?.user.email || '')
-
     if (!session?.user) return loginAlert()
+
+    const currentUser = await getUserByEmail(session?.user.email || '')
 
     if (currentUser.cart.foods.length > 0 && currentUser.cart.company.id !== companyId) alert(session?.user.id)
     else AddToCart(session?.user.id)
