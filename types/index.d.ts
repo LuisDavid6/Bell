@@ -39,7 +39,7 @@ export interface Cart {
   id: string
   user: string
   total: number
-  company: CompanyCart
+  company: Company
   foods: FoodCart[]
 }
 
@@ -49,11 +49,6 @@ export interface FoodCart {
   food: Food
   cant: number
   total: number
-}
-
-interface CompanyCart {
-  id: string
-  name: string
 }
 
 export interface User {

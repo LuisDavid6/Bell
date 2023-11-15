@@ -1,4 +1,6 @@
 'use client'
+
+import { successAlert } from '@/lib/alerts'
 import { convertPrice } from '@/pipes/convertPrice.pipe'
 import { Order, FoodCart } from '@/types'
 import { BookmarkIcon } from '@heroicons/react/24/outline'
@@ -7,12 +9,20 @@ import { useState } from 'react'
 
 const Orders = ({ orders }: { orders: Order[] }) => {
   const [orderInfo, setOrderInfo] = useState<Order>(orders[0])
+  const [showAlert, setShowAlert] = useState(false)
 
   const translateStatus = {
     pending: 'pendiente',
     inProccess: 'en preparación',
     shipping: 'en camino',
     received: 'recibido',
+  }
+
+  const clientSecret = new URLSearchParams(window.location.search).get('payment_intent_client_secret')
+
+  if (clientSecret && !showAlert) {
+    successAlert('¡Su pago se ha realizado exitosamente!')
+    setShowAlert(true)
   }
 
   return (
