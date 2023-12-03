@@ -45,7 +45,7 @@ const AddCategoryForm = ({ closeModal }: { closeModal: () => void }) => {
         <button
           type='submit'
           disabled={loading}
-          className='bg-btn hover:bg-btn2 w-3/6 md:w-2/6 place-self-center mt-10 py-2 rounded-lg text-white disabled:opacity-50 disabled:cursor-not-allowed'
+          className='bg-btn hover:bg-btn2 w-4/6 md:w-5/6 place-self-center mt-10 py-2 rounded-lg text-white disabled:opacity-50 disabled:cursor-not-allowed'
         >
           Agregar
         </button>

@@ -47,7 +47,7 @@ const Foods: React.FC<Props> = ({ foods }) => {
             <div className='grid gap-2 justify-center items-center w-4/6'>
               <h1 className='text-lg text-center font-semibold italic'> {food.name} </h1>
               <p> {food.description} </p>
-              <h2> {convertPrice(food.price)} </h2>
+              <h2 className='text-center'> {convertPrice(food.price)} </h2>
             </div>
           </div>
         )

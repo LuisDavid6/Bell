@@ -36,7 +36,7 @@ const ChangeOutstandings = ({ closeModal, company }: { closeModal: () => void; c
   }
 
   return (
-    <div className='my-5'>
+    <div className='my-5 min-w-[200px]'>
       <h3 className='text-xl text-center mb-5'>Destacados</h3>
       <section className='flex flex-wrap gap-3 justify-center mb-5'>
         {outstandings.map((food) => (

@@ -29,9 +29,9 @@ const Restaurants: React.FC<Props> = ({ restaurants }) => {
               />
               <h1 className='mb-2 text-lg text-center font-semibold italic'>{restaurant.name} </h1>
               <h5 className='text-sm flex justify-center dark:text-gray-200'> {restaurant.horary} </h5>
-              <div className='absolute right-0 top-0 flex items-center gap-2 bg-title rounded-md px-2 py-1 opacity-80'>
-                <RiEBike2Fill />
-                <span className='pr-1 font-bold'>{restaurant.shipping <= 0 ? 'Gratis' : convertPrice(restaurant.shipping)}</span>
+              <div className='absolute right-0 top-0 flex items-center gap-2 bg-title rounded-md px-2 py-1 opacity-100'>
+                <RiEBike2Fill className='text-white' />
+                <span className='pr-1 font-bold text-white'>{restaurant.shipping <= 0 ? 'Gratis' : convertPrice(restaurant.shipping)}</span>
               </div>
             </div>
           </Link>

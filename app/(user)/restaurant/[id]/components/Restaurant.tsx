@@ -25,7 +25,7 @@ const Restaurant = ({ restaurant }: { restaurant: Company }) => {
         </h4>
       </div>
 
-      <div className='flex flex-wrap bg-bg dark:bg-bgDark gap-x-10 py-5'>
+      <div className='flex flex-wrap bg-bg dark:bg-bgDark gap-x-10 py-5 w-full justify-center gap-y-5'>
         <h6> Dirección: {restaurant.address} </h6>
         <h6> Teléfono: {restaurant.tel} </h6>
         <h6> Horarios: {restaurant.horary} </h6>
@@ -33,10 +33,13 @@ const Restaurant = ({ restaurant }: { restaurant: Company }) => {
       </div>
       <div className='flex gap-6 max-sm:flex-col'>
         <div className='px-5 mt-4 h-fit'>
+          <h5 className='w-full text-center text-title font-bold text-lg sm:text-xl italic my-4'>Categorias</h5>
           <ul className='max-sm:flex max-sm:gap-6 overflow-x-auto '>
             <li
               key={'All'}
-              className={`${categoryFilter === 'All' && 'bg-title p-2 rounded-md'} whitespace-nowrap my-5 cursor-pointer underline-offset-1`}
+              className={`${
+                categoryFilter === 'All' && 'bg-title text-white rounded-md'
+              } p-2 whitespace-nowrap my-5 cursor-pointer underline-offset-1 font-extrabold`}
               onClick={() => {
                 setCategoryFilter('All')
                 setFoods(restaurant.foods)
@@ -47,7 +50,9 @@ const Restaurant = ({ restaurant }: { restaurant: Company }) => {
             {restaurant.categories.map((category: string) => (
               <li
                 key={category}
-                className={`${categoryFilter === category && 'bg-title p-2 rounded-md'} whitespace-nowrap my-5 cursor-pointer underline-offset-1`}
+                className={`${
+                  categoryFilter === category && 'bg-title text-white rounded-md'
+                } p-2 whitespace-nowrap my-5 cursor-pointer underline-offset-1`}
                 onClick={() => {
                   filterByCategory(category)
                   setCategoryFilter(category)
