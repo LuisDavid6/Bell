@@ -1,4 +1,5 @@
 'use client'
+
 import { usePathname } from 'next/navigation'
 import { BellAlertIcon, HomeIcon, PresentationChartLineIcon, ShoppingBagIcon } from '@heroicons/react/24/solid'
 import Link from 'next/link'
@@ -34,12 +35,6 @@ const Menu = () => {
           <section className={`${isActive('orders') && 'bg-title text-white'} flex gap-3 pl-5 pr-10 py-3 rounded-3xl cursor-pointer`}>
             <BellAlertIcon className='w-5' />
             <h5 className='text-lg font-semibold'>Pedidos</h5>
-          </section>
-        </Link>
-        <Link href='/balance'>
-          <section className={`${isActive('balance') && 'bg-title text-white'} flex gap-3 pl-5 pr-10 py-3 rounded-3xl cursor-pointer`}>
-            <PresentationChartLineIcon className='w-5' />
-            <h5 className='text-lg font-semibold'>Finanzas</h5>
           </section>
         </Link>
         <section className='flex flex-col items-center justify-center mt-16'>

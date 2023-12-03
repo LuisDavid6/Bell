@@ -49,13 +49,16 @@ const UserRegister = () => {
             email,
             password,
             address,
-            tel,
+            tel: tel.toString(),
             horary,
             shipping,
           })
 
           if (register === 'success') router.push('/login')
-          else {
+          else if (register?.error?.response?.error === 'the email is already registered') {
+            errorAlert('El email ya se encuentra registrado')
+            setLoading(false)
+          } else {
             errorAlert('Un error ha ocurrido')
             setLoading(false)
           }

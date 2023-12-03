@@ -49,8 +49,11 @@ const UserRegister = () => {
             tel: tel,
           })
 
-          if (register?.username) router.push('/login')
-          else {
+          if (register === 'success') router.push('/login')
+          else if (register?.error?.response?.error === 'the email is already registered') {
+            errorAlert('El email ya se encuentra registrado')
+            setLoading(false)
+          } else {
             errorAlert('Un error ha ocurrido')
             setLoading(false)
           }
